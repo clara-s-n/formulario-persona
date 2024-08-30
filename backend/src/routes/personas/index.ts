@@ -1,7 +1,8 @@
 import { FastifyPluginAsync, FastifyPluginOptions } from "fastify";
 import { FastifyInstance } from "fastify/types/instance.js";
-import { PersonaType } from "../../tipos/persona.js";
+import { PersonaType, PersonaPostSchema, PersonaPostType } from "../../tipos/persona.js";
 
+// Lista inicial de personas
 const personas: PersonaType[] = [
   {
     nombre: "Juan",
@@ -12,19 +13,25 @@ const personas: PersonaType[] = [
   },
 ];
 
+// Definición del plugin de ruta
 const personaRoute: FastifyPluginAsync = async (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions
 ): Promise<void> => {
+  // Ruta para obtener todas las personas
   fastify.get("/", {
     handler: async function (request, reply) {
       return personas;
     },
   });
 
+  // Ruta para crear una nueva persona
   fastify.post("/", {
+    schema: {
+      body: PersonaPostSchema.valueOf(), // Usar .valueOf() para obtener el esquema JSON Schema compatible
+    },
     handler: async function (request, reply) {
-      const personaPost = request.body as PersonaType;
+      const personaPost = request.body as PersonaPostType;
       personas.push(personaPost);
       return personaPost;
     },
