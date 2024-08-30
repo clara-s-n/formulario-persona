@@ -19,3 +19,4 @@ services:
       - ./frontend/form:/usr/share/nginx/html/form
       - ./frontend/peopleList:/usr/share/nginx/html/peopleList
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend:/usr/share/nginx/html
