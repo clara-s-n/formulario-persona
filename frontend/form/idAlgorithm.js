@@ -17,7 +17,7 @@ function getVerifyingDigit(id) {
     for (let i = 0; i < 7; i++) {
         suma += parseInt(id.charAt(i)) * coeficientes[i];
     }
-  
+
     // Calcular el dígito verificador
     const digitoVerificador = (10 - (suma % 10)) % 10;
 
