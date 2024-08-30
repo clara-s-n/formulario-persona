@@ -1,6 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
+
 // Expresión regular para el correo electrónico
-// const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 // Expresión regular para la contraseña
 const passwordRegex =
@@ -15,7 +16,7 @@ const rutRegex = /^\d{12}$/;
 export const PersonaSchema = Type.Object({
   nombre: Type.String({ minLength: 2, maxLength: 50 }),
   apellido: Type.String({ minLength: 2, maxLength: 50 }),
-  email: Type.String({ format: "email" }),
+  email: Type.String({ pattern:emailRegex.source }),
   cedula: Type.String({ pattern: cedulaRegex.source }),
   rut: Type.String({ pattern: rutRegex.source }),
 });
@@ -41,6 +42,8 @@ export const PersonaPostSchema = Type.Object({
   nombre: Type.String({ minLength: 2, maxLength: 50 }),
   apellido: Type.String({ minLength: 2, maxLength: 50 }),
 
+  // Acá la validación para el email
+  email: Type.String({ pattern:emailRegex.source }),
 
 });
 
