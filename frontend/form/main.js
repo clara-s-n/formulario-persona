@@ -1,10 +1,12 @@
 class Persona {
-    constructor(nombre, apellido, email, cedula, rut) {
+    constructor(nombre, apellido, email, cedula, rut, password, repeatPassword) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.cedula = cedula;
         this.rut = rut;
+        this.contraseña = password;
+        this.repetirContraseña = repeatPassword;
     }
 }
 
@@ -100,7 +102,9 @@ registrarBtn.addEventListener('click', async function (e) {
             form.apellido.value,
             form.email.value,
             form.cedula.value,
-            form.rut.value
+            form.rut.value,
+            form.password.value,
+            form.repeatPassword.value,
         );
 
         try {
