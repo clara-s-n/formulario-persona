@@ -23,7 +23,7 @@ cancelarBtn.addEventListener('click', function (e) {
 
 listadoBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    window.location.href = '../peopleList/index.html';
+    window.location.href = '/';
 });
 
 const validations = {
@@ -114,7 +114,7 @@ registrarBtn.addEventListener('click', async function (e) {
 
             if (response.ok) {
                 alert('Registro exitoso');
-                window.location.href = '../peopleList/index.html'; // Redirige al listado después del registro
+                window.location.href = '/';
             } else {
                 alert('Error al registrar la persona');
             }
