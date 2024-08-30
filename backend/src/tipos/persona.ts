@@ -31,6 +31,13 @@ export const PersonaPostSchema = Type.Object({
     maxLength: 20,
     pattern: passwordRegex.source,
   }),
+
+  // Acá la validación para el nombre y apellido
+  nombre: Type.String({ minLength: 2, maxLength: 50 }),
+  apellido: Type.String({ minLength: 2, maxLength: 50 }),
+
+
+
 });
 
 export type PersonaType = Static<typeof PersonaSchema>;
