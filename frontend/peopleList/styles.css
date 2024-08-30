@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+html {
+    font-family: 'Merriweather';
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #FAF2D2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
+    background-color: rgba(255, 255, 255, 0.742);
+    flex-grow: 1;
+}
+
+#personList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.add-person-card button {
+    width: 100%;
+    height: 75%;
+    border: none;
+    background-color: #B59E79;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.add-person-card button:hover {
+    background-color: #A38260;
+}
+
+#addPerson i {
+    font-size: 3em;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

@@ -33,6 +33,11 @@ export const PersonaPostSchema = Type.Object({
     pattern: passwordRegex.source,
   }),
 
+  // Se valida la cedula en base a la expresión de antes
+  cedula: Type.String({
+    pattern: cedulaRegex.source,
+  }),
+
   // Acá la validación para el nombre y apellido
   nombre: Type.String({ minLength: 2, maxLength: 50 }),
   apellido: Type.String({ minLength: 2, maxLength: 50 }),
