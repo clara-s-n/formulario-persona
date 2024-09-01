@@ -39,7 +39,7 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para crear una nueva persona
   fastify.post("/", {
     schema: {
-      body: PersonaPostSchema.valueOf(), // Usar .valueOf() para obtener el esquema JSON Schema compatible
+      body: PersonaPostSchema,
     },
     preHandler: [validateCedula, validateRut],
     handler: async function (request, reply) {

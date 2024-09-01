@@ -1,5 +1,6 @@
 class Persona {
     constructor(nombre, apellido, email, cedula, rut, password, repeatPassword) {
+        this.id = 0;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -105,6 +106,7 @@ registrarBtn.addEventListener('click', async function (e) {
     });
 
     if (isValid) {
+        // Creamos un objeto persona con los datos del formulario
         const persona = new Persona(
             form.nombre.value,
             form.apellido.value,
