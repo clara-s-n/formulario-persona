@@ -12,6 +12,7 @@ services:
       - ./backend:/backend
 
   frontend:
+    container_name: frontend
     image: nginx:alpine
     ports:
       - 80:80
