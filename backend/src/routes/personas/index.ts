@@ -1,8 +1,8 @@
 import { FastifyPluginAsync, FastifyPluginOptions } from "fastify";
 import { FastifyInstance } from "fastify/types/instance.js";
 import { PersonaType, PersonaPostSchema, PersonaPostType } from "../../tipos/persona.js";
-import { validateCedula } from "../../tipos/validations/idAlgorithm.js";
-import { validateRut } from "../../tipos/validations/rutAlgorithm.js";
+import { validateCedula } from "../../validations/idAlgorithm.js";
+import { validateRut } from "../../validations/rutAlgorithm.js";
 
 // Lista inicial de personas
 const personas: PersonaType[] = [
