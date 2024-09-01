@@ -53,7 +53,15 @@ const validations = {
         return '';
     },
     repeatPassword: (value, password) => {
-        return value === password ? '' : 'Las contraseñas no coinciden';
+        // Las mismas validaciones que en contraseña, más la de que sea igual a la contraseña
+        if (value.length < 8) return 'La contraseña debe tener al menos 8 caracteres';
+        if (value.length > 20) return 'La contraseña no puede tener más de 20 caracteres';
+        if (!/[A-Z]/.test(value)) return 'La contraseña debe contener al menos una mayúscula';
+        if (!/[a-z]/.test(value)) return 'La contraseña debe contener al menos una minúscula';
+        if (!/[0-9]/.test(value)) return 'La contraseña debe contener al menos un número';
+        if (!/[!@#$%^&*_-]/.test(value)) return 'La contraseña debe contener al menos un carácter especial (!@#$%^&*_-)';
+        if (value !== password) return 'Las contraseñas no coinciden';
+        return '';
     },
     cedula: (value) => {
         if (!isValidFormatId(value)) return 'El formato de la cédula no es válido';
