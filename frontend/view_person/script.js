@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000personas';
+const API_URL = 'http://localhost:3000/personas';
 
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
