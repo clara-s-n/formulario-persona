@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+html {
+    font-family: 'Merriweather';
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #FAF2D2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-square {
+    width: 650px; 
+    height: 600px;
+    background-color: white; 
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin: 20px auto; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    max-width: 150px;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #B59E79;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Baskervville SC';
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #A38260;
+
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#person-name {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#person-id, #person-email, #person-other-info {
+    margin: 5px 0;
+}
