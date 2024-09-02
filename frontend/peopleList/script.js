@@ -47,12 +47,12 @@ async function getPersonList() {
             `;
 
             const viewButton = card.querySelector('.view-person');
-            viewButton.addEventListener('click', function() {
+            viewButton.addEventListener('click', function () {
                 const id = this.getAttribute('data-id');
                 console.log(`Botón "Ver" clickeado, ID: ${id}`);
                 window.location.href = `../view_person/index.html?id=${id}`;
             });
-              
+
 
             personList.appendChild(card);
         });
