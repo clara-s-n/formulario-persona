@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+html {
+    font-family: 'Merriweather';
+}
+
+body {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #FAF2D2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    background-color: #FAF2D2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f3dfb7;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input.valid {
+    border-color: #28a745;
+}
+
+input.invalid {
+    border-color: #dc3545;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.button-conteiner {
+    /* Hacemos que el boton de registrar tome mas espacio y sea una grid con los 3 botones*/
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    max-width: 300px;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #B59E79;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Baskervville SC';
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #A38260;
+
+}
+
+#registrarBtn:hover {
+    background-color: #89c87e;
+}
+
+#cancelarBtn:hover {
+    background-color: #a30707;
+}
