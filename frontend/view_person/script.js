@@ -1,25 +1,36 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    
-    if (id) {
-      try {
-        const response = await fetch(`http://localhost:3000/personas/${id}`);
-        if (response.ok) {
-          const persona = await response.json();
-          
-          document.querySelector("#nombre").textContent = `${persona.nombre} ${persona.apellido}`;
-          document.querySelector("#email").textContent = persona.email;
-          document.querySelector("#cedula").textContent = `C.I: ${persona.cedula}`;
-          document.querySelector("#rut").textContent = `RUT: ${persona.rut}`;
-        } else {
-          alert("Persona no encontrada");
-        }
-      } catch (error) {
-        console.error("Error al obtener la información de la persona:", error);
-      }
+const API_URL = 'http://localhost:3000';
+
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const personId = getQueryParam('id');
+
+if (personId) {
+  try {
+    const response = await fetch(`${API_URL}/personas/${personId}`, {
+       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+        body: JSON.stringify(persona),
+    });
+
+    if (response.ok) {
+      const persona = await response.json();
+      document.getElementById('nombre').value = persona.nombre;
+      document.getElementById('apellido').value = persona.apellido;
+      document.getElementById('edad').value = persona.edad;
+      document.getElementById('email').value = persona.email;
+      document.getElementById('rut').value = persona.rut;
     } else {
-      alert("ID no especificado");
+      console.error('Error al obtener los datos de la persona');
     }
-  });
-  
+  } catch (error) {
+    console.error('Error al obtener los datos de la persona:', error);
+    alert('Error al obtener los datos de la persona');
+  }
+} else {
+  console.error('ID de persona no proporcionado');
+}
