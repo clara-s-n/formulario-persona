@@ -50,6 +50,52 @@ const personaRoute: FastifyPluginAsync = async (
       return personaPost;
     },
   });
+
+  // Ruta para eliminar una persona
+  fastify.delete("/:id", {
+    handler: async function (request, reply) {
+      const { id } = request.params as { id: string };
+      const index = personas.findIndex((p) => p.id === parseInt(id));
+      if (index === -1) {
+        reply.code(404).send({ message: "Persona no encontrada" });
+        return;
+      }
+      const deletedPerson = personas.splice(index, 1)[0];
+      return { message: "Persona eliminada", deletedPerson };
+    },
+  });
+
+  // Ruta para editar una persona
+  fastify.put("/:id", {
+    schema: {
+      body: PersonaPostSchema,
+    },
+    preHandler: [validateCedula, validateRut],
+    handler: async function (request, reply) {
+      const { id } = request.params as { id: string };
+      const updatedPersona = request.body as PersonaPostType;
+      const index = personas.findIndex((p) => p.id === parseInt(id));
+      if (index === -1) {
+        reply.code(404).send({ message: "Persona no encontrada" });
+        return;
+      }
+      personas[index] = { ...personas[index], ...updatedPersona, id: parseInt(id) };
+      return personas[index];
+    },
+  });
+
+  // Ruta para ver los datos de una persona específica
+  fastify.get("/:id", {
+    handler: async function (request, reply) {
+      const { id } = request.params as { id: string };
+      const persona = personas.find((p) => p.id === parseInt(id));
+      if (!persona) {
+        reply.code(404).send({ message: "Persona no encontrada" });
+        return;
+      }
+      return persona;
+    },
+  });
 };
 
 export default personaRoute;
