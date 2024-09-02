@@ -32,8 +32,13 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para obtener todas las personas
   fastify.get("/", {
     handler: async function (request, reply) {
+      if (personas.length === 0) {
+        reply.code(404).send({ message: "No hay personas registradas" });
+        return;
+      }
       return personas;
     },
+
   });
 
   // Ruta para crear una nueva persona
@@ -47,6 +52,10 @@ const personaRoute: FastifyPluginAsync = async (
       const id = personas.length + 1;
       personaPost.id = id;
       personas.push(personaPost);
+      if (!personaPost.id) {
+        reply.code(500).send({ message: "No se pudo crear la persona" });
+        return;
+      }
       return personaPost;
     },
   });
