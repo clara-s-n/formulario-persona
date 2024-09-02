@@ -14,23 +14,22 @@ h1 {
     color: #333;
     text-align: center;
     border-radius: 8px;
-    background-color: #FAF2D2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .rounded-square {
-    width: 650px; 
+    width: 650px;
     height: 600px;
-    background-color: white; 
-    border-radius: 20px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin: 20px auto; 
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 .button-container {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -71,6 +70,8 @@ button:hover {
     margin-bottom: 10px;
 }
 
-#person-id, #person-email, #person-other-info {
+#person-id,
+#person-email,
+#person-other-info {
     margin: 5px 0;
 }
