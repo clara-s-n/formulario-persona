@@ -42,8 +42,18 @@ async function getPersonList() {
                     <p>${person.email}</p>
                     <p>C.I: ${person.cedula}</p>
                     <p>RUT: ${person.rut}</p>
+                    <button class="view-person" data-id="${person.id}">Ver</button>
                 </div>
             `;
+
+            const viewButton = card.querySelector('.view-person');
+            viewButton.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                console.log(`Botón "Ver" clickeado, ID: ${id}`);
+                window.location.href = `../view_person/index.html?id=${id}`;
+            });
+
+
             personList.appendChild(card);
         });
 
