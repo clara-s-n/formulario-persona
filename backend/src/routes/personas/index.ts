@@ -24,6 +24,9 @@ const personas: PersonaType[] = [
   },
 ];
 
+// Set de IDs eliminados
+const deletedIds: Set<number> = new Set<number>();
+
 // Definición del plugin de ruta
 const personaRoute: FastifyPluginAsync = async (
   fastify: FastifyInstance,
@@ -49,15 +52,26 @@ const personaRoute: FastifyPluginAsync = async (
     preHandler: [validateCedula, validateRut],
     handler: async function (request, reply) {
       const personaPost = request.body as PersonaPostType;
-      const id = personas.length + 1;
+      // Asignar ID: usar un ID de deletedIds si está disponible, o generar uno nuevo
+      const id = deletedIds.size > 0
+        ? Array.from(deletedIds)[0] // Get one deleted ID
+        : personas.length > 0
+          ? Math.max(...personas.map(p => p.id)) + 1 // Generate new ID
+          : 1; // Starting ID
+
       personaPost.id = id;
+
+      // Remove the ID from deletedIds set if it's being reused
+      deletedIds.delete(id);
+
       personas.push(personaPost);
+
       if (!personaPost.id) {
         reply.code(500).send({ message: "No se pudo crear la persona" });
         return;
       }
       return personaPost;
-    },
+    }
   });
 
   // Ruta para eliminar una persona
@@ -69,7 +83,10 @@ const personaRoute: FastifyPluginAsync = async (
         reply.code(404).send({ message: "Persona no encontrada" });
         return;
       }
+
+      // Añadir el ID a deletedIds en lugar de eliminar la persona del array
       const deletedPerson = personas.splice(index, 1)[0];
+      deletedIds.add(deletedPerson.id);  // Mark the ID as deleted
       return { message: "Persona eliminada", deletedPerson };
     },
   });
