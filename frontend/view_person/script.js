@@ -45,9 +45,13 @@ async function fetchPersonData() {
 }
 
 
+// Elimina una persona según su id al presionar botón "Eliminar"
+
 document.getElementById('eliminarBtn').addEventListener('click', async function () {
   console.log("Botón eliminar presionado");
-  const confirmDelete = confirm("¿Estás seguro de que deseas eliminar esta persona?");
+
+  // Pregunta si realmente desea eliminarlo
+  const confirmDelete = confirm("¿Seguro que desea eliminar esta persona?");
   if (!confirmDelete) return;
 
   if (!personId) {
@@ -66,7 +70,7 @@ document.getElementById('eliminarBtn').addEventListener('click', async function 
     console.log('Respuesta del servidor:', await response.text());
 
     if (response.ok) {
-      alert('Persona eliminada exitosamente');
+      alert('Persona eliminada con éxito');
       window.location.href = '/';
     } else {
       alert('Error al eliminar la persona');
