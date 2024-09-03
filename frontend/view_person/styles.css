@@ -14,16 +14,23 @@ h1 {
     color: #333;
     text-align: center;
     border-radius: 8px;
+    background-color: #FAF2D2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .rounded-square {
-    width: 650px;
-    height: 600px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 450px;
+    height: 450px;
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center; 
 }
 
 .button-container {
@@ -40,7 +47,7 @@ button {
     display: block;
     width: 100%;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
     background-color: #B59E79;
     color: white;
     border: none;
@@ -53,6 +60,14 @@ button {
 
 button:hover {
     background-color: #A38260;
+}
+
+.icon {
+    width: 50%; 
+    max-width: 200px; 
+    height: auto;
+    opacity: 1;
+    margin: 0.8cm;
 
 }
 
@@ -65,13 +80,24 @@ button:hover {
     margin: 20px auto;
 }
 
-#person-name {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+.nombre-apellido {
+    display: flex;
+    gap: 10px; 
+    font-size: 25px;
+    align-self: flex-start;
+    align-self: center;
+    color: black;
+    margin: auto;
 }
 
-#person-id,
-#person-email,
-#person-other-info {
-    margin: 5px 0;
+.rounded-square p#email {
+    font-size: 16px;
+}
+
+.rounded-square p#cedula {
+    font-size: 16px;
+}
+
+.rounded-square p#rut {
+    font-size: 16px;
 }
