@@ -5,6 +5,7 @@ const confirmarBtn = document.getElementById('confirmarBtn');
 
 cancelarBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    window.alert('Los datos no se han guardado');
     window.location.href = '/';
 });
 
