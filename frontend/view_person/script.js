@@ -52,13 +52,13 @@ document.getElementById('eliminarBtn').addEventListener('click', async function 
 
   // Pregunta si realmente desea eliminarlo
   const confirmDelete = confirm("¿Seguro que desea eliminar esta persona?");
+  console.log('Alerta funciona correctamente');
   if (!confirmDelete) return;
 
   if (!personId) {
     console.error('ID de persona no proporcionado');
     return;
   }
-
   console.log('Eliminando persona con ID:', personId);
 
   try {
