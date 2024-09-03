@@ -29,6 +29,8 @@ async function fetchPersonData() {
       document.getElementById('email').innerText = persona.email;
       document.getElementById('cedula').innerText = persona.cedula;
       document.getElementById('rut').innerText = persona.rut;
+
+      console.log('La persona se ha cargado correctamente:', persona);
     } else {
       console.error('Error al obtener los datos de la persona');
     }
@@ -41,3 +43,42 @@ async function fetchPersonData() {
     window.location.href = 'http://localhost';
   });
 }
+
+
+// Elimina una persona según su id al presionar botón "Eliminar"
+
+document.getElementById('eliminarBtn').addEventListener('click', async function () {
+  console.log("Botón eliminar presionado");
+
+  // Pregunta si realmente desea eliminarlo
+  const confirmDelete = confirm("¿Seguro que desea eliminar esta persona?");
+  console.log('Alerta funciona correctamente');
+  if (!confirmDelete) return;
+
+  if (!personId) {
+    console.error('ID de persona no proporcionado');
+    return;
+  }
+  console.log('Eliminando persona con ID:', personId);
+
+  try {
+    const response = await fetch(`${API_URL}/${personId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Respuesta del servidor:', await response.text());
+
+    if (response.ok) {
+      alert('Persona eliminada con éxito');
+      window.location.href = '/';
+    } else {
+      alert('Error al eliminar la persona');
+    }
+  } catch (error) {
+    console.error('Error al eliminar la persona:', error);
+    alert('Error al eliminar la persona');
+  }
+});
