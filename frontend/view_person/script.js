@@ -59,6 +59,8 @@ document.getElementById('eliminarBtn').addEventListener('click', async function 
     return;
   }
 
+  console.log('Eliminando persona con ID:', personId);
+
   try {
     const response = await fetch(`${API_URL}/${personId}`, {
       method: 'DELETE',
