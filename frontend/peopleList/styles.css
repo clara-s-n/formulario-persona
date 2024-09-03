@@ -90,3 +90,26 @@ h1 {
     white-space: nowrap;
     border-width: 0;
 }
+
+.view-person {
+    flex: 1;
+    max-width: 70px;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #B59E79;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Baskervville SC';
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #A38260;
+
+}

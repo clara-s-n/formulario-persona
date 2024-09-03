@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+html {
+    font-family: 'Merriweather';
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #FAF2D2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-square {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 450px;
+    height: 450px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 30px auto;
+    transition: 0.3s;
+    text-align: center; 
+    border-radius: 5px;
+    padding: 2px 16px;
+    background-color: rgba(255, 255, 255, 0.742);
+    
+}
+
+.rounded-square:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    max-width: 150px;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #B59E79;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Baskervville SC';
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #A38260;
+}
+
+.icon {
+    width: 50%; 
+    max-width: 200px; 
+    height: auto;
+    opacity: 1;
+    margin: 0.8cm;
+
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.nombre-apellido {
+    display: flex;
+    gap: 10px; 
+    font-size: 25px;
+    align-self: flex-start;
+    align-self: center;
+    color: black;
+    margin: auto;
+}
+
+.rounded-square p#email {
+    font-size: 16px;
+}
+
+.rounded-square p#cedula {
+    font-size: 16px;
+}
+
+.rounded-square p#rut {
+    font-size: 16px;
+}
