@@ -39,7 +39,7 @@ async function fetchPersonData() {
     alert('Error al obtener los datos de la persona');
   }
 
-  document.getElementById('volverBtn').addEventListener('click', function() {
+  document.getElementById('volverBtn').addEventListener('click', function () {
     window.location.href = 'http://localhost';
   });
 }
@@ -81,4 +81,9 @@ document.getElementById('eliminarBtn').addEventListener('click', async function 
     console.error('Error al eliminar la persona:', error);
     alert('Error al eliminar la persona');
   }
+});
+
+// Cuando hacemos click en editar, nos redirige a la página de edición
+document.getElementById('editarBtn').addEventListener('click', function () {
+  window.location.href = `../editForm/index.html?id=${personId}`;
 });

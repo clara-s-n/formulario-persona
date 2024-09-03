@@ -5,6 +5,7 @@ const confirmarBtn = document.getElementById('confirmarBtn');
 
 cancelarBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    window.alert('Los datos no se han guardado');
     window.location.href = '/';
 });
 
@@ -168,17 +169,3 @@ async function obtenerDatosPersona() {
         alert('Error al obtener los datos de la persona');
     }
 }
-
-
-/*                   COLOCAR EN VIEW_PERSON UNA VEZ TERMINADO
-
-            <button class="edit-person" data-id="${person.id}">Editar</button>
-
-            const editButton = card.querySelector('.edit-person');
-            editButton.addEventListener('click', function () {
-                const id = this.getAttribute('data-id');
-                console.log(`Botón "Editar" clickeado, ID: ${id}`);
-                window.location.href = `../editForm/index.html?id=${id}`;
-            });
-            
-*/

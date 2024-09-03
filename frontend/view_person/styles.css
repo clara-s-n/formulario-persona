@@ -22,18 +22,18 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     width: 450px;
     height: 450px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 30px auto;
     transition: 0.3s;
-    text-align: center; 
+    text-align: center;
     border-radius: 5px;
     padding: 2px 16px;
     background-color: rgba(255, 255, 255, 0.742);
-    
+
 }
 
 .rounded-square:hover {
@@ -70,8 +70,8 @@ button:hover {
 }
 
 .icon {
-    width: 50%; 
-    max-width: 200px; 
+    width: 50%;
+    max-width: 200px;
     height: auto;
     opacity: 1;
     margin: 0.8cm;
@@ -89,7 +89,7 @@ button:hover {
 
 .nombre-apellido {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
     font-size: 25px;
     align-self: flex-start;
     align-self: center;
@@ -107,4 +107,9 @@ button:hover {
 
 .rounded-square p#rut {
     font-size: 16px;
+}
+
+/* El botón de eliminar se hace rojo en el hover*/
+#eliminarBtn:hover {
+    background-color: #a30707;
 }
