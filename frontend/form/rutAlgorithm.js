@@ -26,6 +26,3 @@ function isValidRut(rut) {
     }
     return false;
 }
-
-// Example usage
-console.log(isValidRut('123456789012')); // true
