@@ -65,8 +65,9 @@ input.invalid {
 .button-conteiner {
     /* Hacemos que el boton de registrar tome mas espacio y sea una grid con los 3 botones*/
     display: grid;
-    justify-content: space-between;
-    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, auto);
     gap: 10px;
 }
 
@@ -93,7 +94,7 @@ button:hover {
 
 }
 
-#registrarBtn:hover {
+#confirmarBtn:hover {
     background-color: #89c87e;
 }
 
