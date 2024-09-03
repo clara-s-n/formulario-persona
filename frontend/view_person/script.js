@@ -36,4 +36,8 @@ async function fetchPersonData() {
     console.error('Error al obtener los datos de la persona:', error);
     alert('Error al obtener los datos de la persona');
   }
+
+  document.getElementById('volverBtn').addEventListener('click', function() {
+    window.location.href = 'http://localhost';
+  });
 }
