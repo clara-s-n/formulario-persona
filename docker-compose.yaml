@@ -10,6 +10,11 @@ services:
       - 3000:3000
     volumes:
       - ./backend:/backend
+    environment:
+      - PG_DATABASE=${DB_DATABASE}
+      - PG_USER=${DB_USERNAME}
+      - PG_PASSWORD=${DB_PASSWORD}
+      - PG_HOST=database
 
   frontend:
     container_name: frontend
@@ -27,6 +32,6 @@ services:
     ports:
       - 5434:5432
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=personas
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
