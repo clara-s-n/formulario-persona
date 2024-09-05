@@ -8,7 +8,8 @@ import { query } from "../../services/database.js";
 // Lista inicial de personas
 const personas: PersonaType[] = [
   {
-    id: 1,
+
+    id: 3,
     name: "Juan",
     lastname: "Pérez",
     email: "juan.perez@example.com",
@@ -16,7 +17,8 @@ const personas: PersonaType[] = [
     rut: "123456789123",
   },
   {
-    id: 2,
+
+    id: 4,
     name: "María",
     lastname: "González",
     email: "maria.perez@example.com",
@@ -36,15 +38,15 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para obtener todas las personas
   fastify.get("/", {
     handler: async function (request, reply) {
-
-      const res = await query('select * from personas');
-      if (res.rows.length === 0) {
-        reply.code(404).send({ message: "No se encontraron personas" });
-        return;
-      }
+      const res = await query(`select
+        id,
+        nombre,
+        apellido,
+        email,
+        cedula,
+        rut
+        from personas`);
       return res.rows;
-    },
-
   });
 
   // Ruta para crear una nueva persona
@@ -117,11 +119,20 @@ const personaRoute: FastifyPluginAsync = async (
   fastify.get("/:id", {
     handler: async function (request, reply) {
       const { id } = request.params as { id: string };
-      const persona = personas.find((p) => p.id === parseInt(id));
-      if (!persona) {
+      const res = await query(`select 
+        id,
+        nombre,
+        apellido,
+        email,
+        cedula,
+        rut
+        from personas where id = ${id};`);
+
+      if (res.rows.length === 0) {
         reply.code(404).send({ message: "Persona no encontrada" });
         return;
       }
+      const persona = res.rows[0];
       return persona;
     },
   });
