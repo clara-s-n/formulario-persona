@@ -23,15 +23,15 @@ if (personId) {
 }
 
 class Persona {
-    constructor(nombre, apellido, email, cedula, rut, password, repeatPassword) {
+    constructor(name, lastname, email, countryId, rut, password, repeatPassword) {
         this.id = personId;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.name = name;
+        this.lastname = lastname;
         this.email = email;
-        this.cedula = cedula;
+        this.countryId = countryId;
         this.rut = rut;
-        this.contraseña = password;
-        this.repetirContraseña = repeatPassword;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
     }
 }
 
@@ -40,12 +40,12 @@ const inputs = form.querySelectorAll('input');
 
 // Lógica para validar los campos del formulario
 const validations = {
-    nombre: (value) => {
+    name: (value) => {
         if (value.length < 2) return 'El nombre debe tener al menos 2 caracteres';
         if (value.length > 50) return 'El nombre no puede tener más de 50 caracteres';
         return '';
     },
-    apellido: (value) => {
+    lastname: (value) => {
         if (value.length < 2) return 'El apellido debe tener al menos 2 caracteres';
         if (value.length > 50) return 'El apellido no puede tener más de 50 caracteres';
         return '';
@@ -74,7 +74,7 @@ const validations = {
         if (value !== password) return 'Las contraseñas no coinciden';
         return '';
     },
-    cedula: (value) => {
+    countryId: (value) => {
         if (!isValidFormatId(value)) return 'El formato de la cédula no es válido';
         return isValidId(value) ? '' : 'La cédula no es válida';
 
@@ -113,10 +113,10 @@ confirmarBtn.addEventListener('click', async function (e) {
     if (isValid) {
         // Creamos un objeto persona con los datos del formulario
         const persona = new Persona(
-            document.getElementById('nombre').value,
-            document.getElementById('apellido').value,
+            document.getElementById('name').value,
+            document.getElementById('lastname').value,
             document.getElementById('email').value,
-            document.getElementById('cedula').value,
+            document.getElementById('countryId').value,
             document.getElementById('rut').value,
             document.getElementById('password').value,
             document.getElementById('repeatPassword').value,
@@ -156,10 +156,10 @@ async function obtenerDatosPersona() {
 
         if (response.ok) {
             const persona = await response.json();
-            document.getElementById('nombre').value = persona.nombre;
-            document.getElementById('apellido').value = persona.apellido;
+            document.getElementById('name').value = persona.name;
+            document.getElementById('lastname').value = persona.lastname;
             document.getElementById('email').value = persona.email;
-            document.getElementById('cedula').value = persona.cedula;
+            document.getElementById('countryId').value = persona.countryId;
             document.getElementById('rut').value = persona.rut;
         } else {
             console.error('Error al obtener los datos de la persona');

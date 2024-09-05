@@ -9,18 +9,18 @@ import { query } from "../../services/database.js";
 const personas: PersonaType[] = [
   {
     id: 1,
-    nombre: "Juan",
-    apellido: "Pérez",
+    name: "Juan",
+    lastname: "Pérez",
     email: "juan.perez@example.com",
-    cedula: "3.456.789-0",
+    countryId: "3.456.789-0",
     rut: "123456789123",
   },
   {
     id: 2,
-    nombre: "María",
-    apellido: "González",
+    name: "María",
+    lastname: "González",
     email: "maria.perez@example.com",
-    cedula: "4.567.890-1",
+    countryId: "4.567.890-1",
     rut: "234567890234",
   },
 ];
@@ -38,12 +38,11 @@ const personaRoute: FastifyPluginAsync = async (
     handler: async function (request, reply) {
 
       const res = await query('select * from personas');
-      return res.rows;
-      /*if (personas.length === 0) {
-        reply.code(404).send({ message: "No hay personas registradas" });
+      if (res.rows.length === 0) {
+        reply.code(404).send({ message: "No se encontraron personas" });
         return;
       }
-      return personas;*/
+      return res.rows;
     },
 
   });

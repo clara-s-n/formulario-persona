@@ -38,9 +38,9 @@ async function getPersonList() {
             card.innerHTML = `
                 <img src="https://i.fbcd.co/products/resized/resized-750-500/d4c961732ba6ec52c0bbde63c9cb9e5dd6593826ee788080599f68920224e27d.jpg" class="icon" alt="Avatar" style="width:100%">
                 <div class="container">
-                    <h4>${person.nombre} ${person.apellido}</h4>
+                    <h4>${person.name} ${person.lastname}</h4>
                     <p>${person.email}</p>
-                    <p>C.I: ${person.cedula}</p>
+                    <p>C.I: ${person.countryid}</p>
                     <p>RUT: ${person.rut}</p>
                     <button class="view-person" data-id="${person.id}">Ver</button>
                 </div>
