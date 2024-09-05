@@ -47,7 +47,7 @@ const personaRoute: FastifyPluginAsync = async (
         rut
         from personas`);
       return res.rows;
-  });
+  }});
 
   // Ruta para crear una nueva persona
   fastify.post("/", {
