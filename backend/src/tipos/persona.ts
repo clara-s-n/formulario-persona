@@ -11,10 +11,10 @@ const rutRegex = /^\d{12}$/;
 
 export const PersonaSchema = Type.Object({
   id: Type.Number(), // Se agrega el id
-  nombre: Type.String({ minLength: 2, maxLength: 50 }),
-  apellido: Type.String({ minLength: 2, maxLength: 50 }),
+  name: Type.String({ minLength: 2, maxLength: 50 }),
+  lastname: Type.String({ minLength: 2, maxLength: 50 }),
   email: Type.String({ type: 'string', format: 'email' }),
-  cedula: Type.String({ pattern: cedulaRegex.source }),
+  countryId: Type.String({ pattern: cedulaRegex.source }),
   rut: Type.String({ pattern: rutRegex.source }),
 });
 
@@ -22,25 +22,25 @@ export const PersonaPostSchema = Type.Object({
   // Se agrega el id
   id: Type.Number(),
 
-  contraseña: Type.String({
+  password: Type.String({
     minLength: 8,
     maxLength: 20,
     pattern: passwordRegex.source,
   }),
-  repetirContraseña: Type.String({
+  repeatPassword: Type.String({
     minLength: 8,
     maxLength: 20,
     pattern: passwordRegex.source,
   }),
 
   // Se valida la cedula en base a la expresión de antes
-  cedula: Type.String({
+  countryId: Type.String({
     pattern: cedulaRegex.source,
   }),
 
   // Acá la validación para el nombre y apellido
-  nombre: Type.String({ minLength: 2, maxLength: 50 }),
-  apellido: Type.String({ minLength: 2, maxLength: 50 }),
+  name: Type.String({ minLength: 2, maxLength: 50 }),
+  lastname: Type.String({ minLength: 2, maxLength: 50 }),
 
   // Acá la validación para el email
   email: Type.String({ type: 'string', format: 'email' }),

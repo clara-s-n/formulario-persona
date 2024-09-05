@@ -24,10 +24,10 @@ async function fetchPersonData() {
 
     if (response.ok) {
       const persona = await response.json();
-      document.getElementById('nombre').innerText = persona.nombre;
-      document.getElementById('apellido').innerText = persona.apellido;
+      document.getElementById('name').innerText = persona.name;
+      document.getElementById('lastname').innerText = persona.lastname;
       document.getElementById('email').innerText = persona.email;
-      document.getElementById('cedula').innerText = persona.cedula;
+      document.getElementById('countryId').innerText = persona.countryId;
       document.getElementById('rut').innerText = persona.rut;
 
       console.log('La persona se ha cargado correctamente:', persona);

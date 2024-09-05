@@ -1,7 +1,7 @@
 name: persona
 services:
   backend:
-    image: backend:production
+    image: backend
     container_name: backend
     build:
       context: ./backend

@@ -8,19 +8,21 @@ import { query } from "../../services/database.js";
 // Lista inicial de personas
 const personas: PersonaType[] = [
   {
+
     id: 3,
-    nombre: "Juan",
-    apellido: "Pérez",
+    name: "Juan",
+    lastname: "Pérez",
     email: "juan.perez@example.com",
-    cedula: "3.456.789-0",
+    countryId: "3.456.789-0",
     rut: "123456789123",
   },
   {
+
     id: 4,
-    nombre: "María",
-    apellido: "González",
+    name: "María",
+    lastname: "González",
     email: "maria.perez@example.com",
-    cedula: "4.567.890-1",
+    countryId: "4.567.890-1",
     rut: "234567890234",
   },
 ];
@@ -36,7 +38,6 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para obtener todas las personas
   fastify.get("/", {
     handler: async function (request, reply) {
-
       const res = await query(`select
         id,
         nombre,
@@ -46,13 +47,6 @@ const personaRoute: FastifyPluginAsync = async (
         rut
         from personas`);
       return res.rows;
-      /*if (personas.length === 0) {
-        reply.code(404).send({ message: "No hay personas registradas" });
-        return;
-      }
-      return personas;*/
-    },
-
   });
 
   // Ruta para crear una nueva persona

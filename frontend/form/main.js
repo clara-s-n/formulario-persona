@@ -1,13 +1,13 @@
 class Persona {
-    constructor(nombre, apellido, email, cedula, rut, password, repeatPassword) {
+    constructor(name, lastname, email, countryId, rut, password, repeatPassword) {
         this.id = 0;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.name = name;
+        this.lastname = lastname;
         this.email = email;
-        this.cedula = cedula;
+        this.countryId = countryId;
         this.rut = rut;
-        this.contraseña = password;
-        this.repetirContraseña = repeatPassword;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
     }
 }
 
@@ -30,12 +30,12 @@ listadoBtn.addEventListener('click', function (e) {
 });
 
 const validations = {
-    nombre: (value) => {
+    name: (value) => {
         if (value.length < 2) return 'El nombre debe tener al menos 2 caracteres';
         if (value.length > 50) return 'El nombre no puede tener más de 50 caracteres';
         return '';
     },
-    apellido: (value) => {
+    lastname: (value) => {
         if (value.length < 2) return 'El apellido debe tener al menos 2 caracteres';
         if (value.length > 50) return 'El apellido no puede tener más de 50 caracteres';
         return '';
@@ -64,7 +64,7 @@ const validations = {
         if (value !== password) return 'Las contraseñas no coinciden';
         return '';
     },
-    cedula: (value) => {
+    countryId: (value) => {
         if (!isValidFormatId(value)) return 'El formato de la cédula no es válido';
         return isValidId(value) ? '' : 'La cédula no es válida';
 
@@ -108,10 +108,10 @@ registrarBtn.addEventListener('click', async function (e) {
     if (isValid) {
         // Creamos un objeto persona con los datos del formulario
         const persona = new Persona(
-            form.nombre.value,
-            form.apellido.value,
+            form.name.value,
+            form.lastname.value,
             form.email.value,
-            form.cedula.value,
+            form.countryId.value,
             form.rut.value,
             form.password.value,
             form.repeatPassword.value,
