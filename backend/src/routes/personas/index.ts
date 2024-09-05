@@ -3,6 +3,7 @@ import { FastifyInstance } from "fastify/types/instance.js";
 import { PersonaType, PersonaPostSchema, PersonaPostType } from "../../tipos/persona.js";
 import { validateCedula } from "../../validations/idAlgorithm.js";
 import { validateRut } from "../../validations/rutAlgorithm.js";
+import { query } from "../../services/database.js";
 
 // Lista inicial de personas
 const personas: PersonaType[] = [
@@ -35,11 +36,14 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para obtener todas las personas
   fastify.get("/", {
     handler: async function (request, reply) {
-      if (personas.length === 0) {
+
+      const res = await query('select * from personas');
+      return res.rows;
+      /*if (personas.length === 0) {
         reply.code(404).send({ message: "No hay personas registradas" });
         return;
       }
-      return personas;
+      return personas;*/
     },
 
   });

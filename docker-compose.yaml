@@ -1,7 +1,7 @@
 name: persona
 services:
   backend:
-    image: backend:production
+    image: backend
     container_name: backend
     build:
       context: ./backend
@@ -10,6 +10,11 @@ services:
       - 3000:3000
     volumes:
       - ./backend:/backend
+    environment:
+      - PG_DATABASE=${DB_DATABASE}
+      - PG_USER=${DB_USERNAME}
+      - PG_PASSWORD=${DB_PASSWORD}
+      - PG_HOST=database
 
   frontend:
     container_name: frontend
@@ -19,3 +24,14 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./frontend:/usr/share/nginx/html
+
+  database:
+    image: database
+    container_name: database_persona
+    build: ./database
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
