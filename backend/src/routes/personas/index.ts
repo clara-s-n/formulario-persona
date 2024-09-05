@@ -8,7 +8,7 @@ import { query } from "../../services/database.js";
 // Lista inicial de personas
 const personas: PersonaType[] = [
   {
-    id: 1,
+    id: 3,
     nombre: "Juan",
     apellido: "Pérez",
     email: "juan.perez@example.com",
@@ -16,7 +16,7 @@ const personas: PersonaType[] = [
     rut: "123456789123",
   },
   {
-    id: 2,
+    id: 4,
     nombre: "María",
     apellido: "González",
     email: "maria.perez@example.com",
@@ -37,7 +37,14 @@ const personaRoute: FastifyPluginAsync = async (
   fastify.get("/", {
     handler: async function (request, reply) {
 
-      const res = await query('select * from personas');
+      const res = await query(`select
+        id,
+        nombre,
+        apellido,
+        email,
+        cedula,
+        rut
+        from personas`);
       return res.rows;
       /*if (personas.length === 0) {
         reply.code(404).send({ message: "No hay personas registradas" });
@@ -118,11 +125,20 @@ const personaRoute: FastifyPluginAsync = async (
   fastify.get("/:id", {
     handler: async function (request, reply) {
       const { id } = request.params as { id: string };
-      const persona = personas.find((p) => p.id === parseInt(id));
-      if (!persona) {
+      const res = await query(`select 
+        id,
+        nombre,
+        apellido,
+        email,
+        cedula,
+        rut
+        from personas where id = ${id};`);
+
+      if (res.rows.length === 0) {
         reply.code(404).send({ message: "Persona no encontrada" });
         return;
       }
+      const persona = res.rows[0];
       return persona;
     },
   });
