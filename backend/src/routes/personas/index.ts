@@ -12,6 +12,9 @@ const personaRoute: FastifyPluginAsync = async (
 ): Promise<void> => {
   // Ruta para obtener todas las personas
   fastify.get("/", {
+    schema: {
+      tags: ["persona"]
+    },
     handler: async function (request, reply) {
       const res = await query(`select
         id,
@@ -31,6 +34,7 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para crear una nueva persona
   fastify.post("/", {
     schema: {
+      tags: ["persona"],
       body: PersonaPostSchema,
     },
     preHandler: [validateCedula, validateRut],
@@ -54,6 +58,7 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para eliminar una persona
   fastify.delete("/:id", {
     schema: {
+      tags: ["persona"],
       params: PersonaIdSchema,
       response: {
         200: {
@@ -85,6 +90,7 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para editar una persona
   fastify.put("/:id", {
     schema: {
+      tags: ["persona"],
       params: PersonaIdSchema,
       body: PersonaPutSchema,
       response: {
@@ -132,6 +138,7 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para ver los datos de una persona específica
   fastify.get("/:id", {
     schema: {
+      tags: ["persona"],
       params: PersonaIdSchema,
       response: {
         200: {
