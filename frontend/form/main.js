@@ -92,7 +92,7 @@ function validateField(field) {
 
 // Lógica para el registro de personas
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost/backend/personas';
 
 // Modificamos la función de registro para enviar los datos al backend
 registrarBtn.addEventListener('click', async function (e) {
@@ -118,7 +118,7 @@ registrarBtn.addEventListener('click', async function (e) {
         );
 
         try {
-            const response = await fetch(`${API_URL}/personas`, {
+            const response = await fetch(`${API_URL}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
