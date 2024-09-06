@@ -95,7 +95,7 @@ const personaRoute: FastifyPluginAsync = async (
             name: { type: "string" },
             lastname: { type: "string" },
             email: { type: "string" },
-            countryId: { type: "string" },
+            countryid: { type: "string" },
             rut: { type: "string" },
           },
         },
@@ -141,7 +141,7 @@ const personaRoute: FastifyPluginAsync = async (
             name: { type: "string" },
             lastname: { type: "string" },
             email: { type: "string" },
-            countryId: { type: "string" },
+            countryid: { type: "string" },
             rut: { type: "string" },
           },
         },
@@ -160,7 +160,7 @@ const personaRoute: FastifyPluginAsync = async (
         name,
         lastname,
         email,
-        countryid,
+        countryId,
         rut
         from personas where id = ${id};`);
 
