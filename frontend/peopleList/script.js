@@ -12,18 +12,7 @@ async function getPersonList() {
         personList.innerHTML = '';
 
         console.log('Creando tarjeta de "Agregar Persona"');
-        const addPersonCard = document.createElement('div');
-        addPersonCard.classList.add('card', 'add-person-card');
-        addPersonCard.innerHTML = `
-            <div class="container">
-                <h1>Agregar Persona</h1>
-                <button id="addPerson" aria-label="Agregar nueva persona" title="Agregar nueva persona">
-                    <i class="fas fa-user-plus" aria-hidden="true"></i>
-                    <span class="sr-only">Agregar Persona</span>
-                </button>
-            </div>
-        `;
-        personList.appendChild(addPersonCard);
+        const addPersonCard = document.getElementById('add-person-card');
 
         const addPersonButton = addPersonCard.querySelector('#addPerson');
         addPersonButton.addEventListener('click', () => {
