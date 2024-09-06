@@ -7,8 +7,6 @@ const pool = new Pool({
     'database': 'personas',
     'user': 'admin',
     'password': 'admin',
-    'host': 'database',
-    'port': 5432
 })
  
 export const query = async (text: string, params?: (string|number|string[]|number[])[]) => {
