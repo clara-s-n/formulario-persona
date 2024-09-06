@@ -9,8 +9,6 @@ async function getPersonList() {
         const data = await response.json();
         console.log('Datos recibidos:', data);
 
-        personList.innerHTML = '';
-
         console.log('Creando tarjeta de "Agregar Persona"');
         const addPersonCard = document.getElementById('add-person-card');
 
