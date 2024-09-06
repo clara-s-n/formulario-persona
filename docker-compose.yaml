@@ -1,13 +1,27 @@
 name: persona
 services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+    environment:
+      - FRONTEND_URL=${FRONTEND_URL}
+      - BACKEND_URL=${BACKEND_URL}
+    depends_on:
+      - backend
+      - frontend
+
   backend:
     image: backend
     container_name: backend
     build:
       context: ./backend
     command: sh -c "npm install;npm run dev"
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     volumes:
       - ./backend:/backend
     environment:
@@ -19,10 +33,9 @@ services:
   frontend:
     container_name: frontend
     image: nginx:alpine
-    ports:
-      - 80:80
+    expose:
+      - 80
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./frontend:/usr/share/nginx/html
 
   database:
@@ -30,7 +43,7 @@ services:
     container_name: database_persona
     build: ./database
     ports:
-      - 5434:5432
+      - "5434:5432"
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
