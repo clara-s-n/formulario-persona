@@ -19,9 +19,6 @@ export const PersonaSchema = Type.Object({
 });
 
 export const PersonaPostSchema = Type.Object({
-  // Se agrega el id
-  id: Type.Number(),
-
   password: Type.String({
     minLength: 8,
     maxLength: 20,
@@ -45,5 +42,15 @@ export const PersonaPostSchema = Type.Object({
 
 });
 
+export const PersonaPutSchema = Type.Object({
+    name: Type.Optional(Type.String({ minLength: 2, maxLength: 50 })),
+    lastname: Type.Optional(Type.String({ minLength: 2, maxLength: 50 })),
+    email: Type.Optional(Type.String({ type: 'string', format: 'email' })),
+    countryId: Type.Optional(Type.String({ pattern: cedulaRegex.source })),
+    rut: Type.Optional(Type.String({ pattern: rutRegex.source })),
+    password: Type.Optional(Type.String()),
+});
+
 export type PersonaType = Static<typeof PersonaSchema>;
 export type PersonaPostType = Static<typeof PersonaPostSchema>;
+export type PersonaPutType = Static<typeof PersonaPutSchema>;

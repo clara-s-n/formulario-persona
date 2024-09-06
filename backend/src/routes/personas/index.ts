@@ -1,6 +1,6 @@
 import { FastifyPluginAsync, FastifyPluginOptions } from "fastify";
 import { FastifyInstance } from "fastify/types/instance.js";
-import { PersonaPostSchema, PersonaPostType } from "../../tipos/persona.js";
+import { PersonaPutSchema, PersonaPutType, PersonaPostType, PersonaPostSchema  } from "../../tipos/persona.js";
 import { validateCedula } from "../../validations/idAlgorithm.js";
 import { validateRut } from "../../validations/rutAlgorithm.js";
 import { query } from "../../services/database.js";
@@ -38,7 +38,7 @@ const personaRoute: FastifyPluginAsync = async (
       const personaPost = request.body as PersonaPostType;
       // Ahora lo conectamos a la base de datos
         const res = await query(`insert into personas
-            (nombre, apellido, email, cedula, rut, password)
+            (name, lastname, email, countryId, rut, password)
             values
             ('${personaPost.name}', '${personaPost.lastname}', '${personaPost.email}', '${personaPost.countryId}', '${personaPost.rut}', '${personaPost.password}')
             returning id;`);
@@ -47,7 +47,7 @@ const personaRoute: FastifyPluginAsync = async (
             reply.code(404).send({ message: "Persona no encontrada" });
             return;
         }
-        return { ...personaPost, id };
+        reply.code(201).send({ ...personaPost, id });
     }
   });
 
@@ -58,37 +58,38 @@ const personaRoute: FastifyPluginAsync = async (
       // Eliminamos la persona de la base de datos
         const res = await query(`delete from personas where id = ${id};`);
         if (res.rowCount === 0) {
-          reply.code(404).send({ message: "Persona no encontrada" });
+          reply.code(404).send({message: "Persona no encontrada"});
           return;
         }
-        return { message: "Persona eliminada" };
+        reply.code(200).send({ message: "Persona eliminada", id });
   }});
 
   // Ruta para editar una persona
   fastify.put("/:id", {
     schema: {
-      body: PersonaPostSchema,
+      body: PersonaPutSchema,
     },
     preHandler: [validateCedula, validateRut],
     handler: async function (request, reply) {
-        const { id } = request.params as { id: string };
-        const personaPost = request.body as PersonaPostType;
-        // Actualizamos la persona en la base de datos
-            const res = await query(`update personas set
-                name = '${personaPost.name}',
-                lastname = '${personaPost.lastname}',
-                email = '${personaPost.email}',
-                countryId = '${personaPost.countryId}',
-                rut = '${personaPost.rut}'
-                where id = ${id}
-                returning id;`);
-            if (res.rows.length === 0) {
+      const {id} = request.params as { id: string };
+      const personaPut = request.body as PersonaPutType;
+      // Actualizamos la persona en la base de datos
+      const res = await query(`update personas
+        set name = '${personaPut.name}',
+        lastname = '${personaPut.lastname}',
+        email = '${personaPut.email}',
+        countryId = '${personaPut.countryId}',
+        rut = '${personaPut.rut}'
+        where id = ${id}
+        returning id;`);
+        if (res.rows.length === 0) {
             reply.code(404).send({ message: "Persona no encontrada" });
             return;
-            }
-            return { ...personaPost, id };
+        }
+        reply.code(200).send({ ...personaPut, id });
+    }
 
-  }});
+  });
 
   // Ruta para ver los datos de una persona específica
   fastify.get("/:id", {

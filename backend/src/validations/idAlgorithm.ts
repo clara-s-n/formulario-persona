@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const validateCedula = async (request: FastifyRequest, reply: FastifyReply) => {
-    const { cedula } = request.body as { cedula: string };
-    if (!cedula || !isValidId(cedula)) {
+    const { countryId } = request.body as { countryId: string };
+    if (!countryId || !isValidId(countryId)) {
         return reply.status(400).send({ message: 'Cédula no válida' });
     }
 }
