@@ -1,6 +1,6 @@
 import { FastifyPluginAsync, FastifyPluginOptions } from "fastify";
 import { FastifyInstance } from "fastify/types/instance.js";
-import { PersonaPutSchema, PersonaPutType, PersonaPostType, PersonaPostSchema  } from "../../tipos/persona.js";
+import { PersonaIdSchema, PersonaPutSchema, PersonaPutType, PersonaPostType, PersonaPostSchema  } from "../../tipos/persona.js";
 import { validateCedula } from "../../validations/idAlgorithm.js";
 import { validateRut } from "../../validations/rutAlgorithm.js";
 import { query } from "../../services/database.js";
@@ -53,6 +53,24 @@ const personaRoute: FastifyPluginAsync = async (
 
   // Ruta para eliminar una persona
   fastify.delete("/:id", {
+    schema: {
+      params: PersonaIdSchema,
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            message: {type: "string"},
+            id: {type: "number"},
+          },
+        },
+        404: {
+          type: "object",
+          properties: {
+            message: {type: "string"},
+          },
+        }
+      }
+    },
     handler: async function (request, reply) {
       const { id } = request.params as { id: string };
       // Eliminamos la persona de la base de datos
@@ -67,7 +85,27 @@ const personaRoute: FastifyPluginAsync = async (
   // Ruta para editar una persona
   fastify.put("/:id", {
     schema: {
+      params: PersonaIdSchema,
       body: PersonaPutSchema,
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            id: { type: "number" },
+            name: { type: "string" },
+            lastname: { type: "string" },
+            email: { type: "string" },
+            countryid: { type: "string" },
+            rut: { type: "string" },
+          },
+        },
+        404: {
+          type: "object",
+          properties: {
+                message: { type: "string" },
+          },
+        },
+      },
     },
     preHandler: [validateCedula, validateRut],
     handler: async function (request, reply) {
@@ -93,6 +131,28 @@ const personaRoute: FastifyPluginAsync = async (
 
   // Ruta para ver los datos de una persona específica
   fastify.get("/:id", {
+    schema: {
+      params: PersonaIdSchema,
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            id: { type: "number" },
+            name: { type: "string" },
+            lastname: { type: "string" },
+            email: { type: "string" },
+            countryid: { type: "string" },
+            rut: { type: "string" },
+          },
+        },
+        404: {
+          type: "object",
+          properties: {
+            message: { type: "string" },
+          },
+        },
+      },
+    },
     handler: async function (request, reply) {
       const { id } = request.params as { id: string };
       const res = await query(`select 
