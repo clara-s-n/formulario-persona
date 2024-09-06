@@ -10,7 +10,7 @@ const cedulaRegex = /^[1-9]{1}\.[0-9]{3}\.[0-9]{3}-[0-9]{1}$/;
 const rutRegex = /^\d{12}$/;
 
 export const PersonaSchema = Type.Object({
-  id: Type.Number(), // Se agrega el id
+  id: Type.Number(),
   name: Type.String({ minLength: 2, maxLength: 50 }),
   lastname: Type.String({ minLength: 2, maxLength: 50 }),
   email: Type.String({ type: 'string', format: 'email' }),
@@ -23,11 +23,6 @@ export const PersonaPostSchema = Type.Object({
   id: Type.Number(),
 
   password: Type.String({
-    minLength: 8,
-    maxLength: 20,
-    pattern: passwordRegex.source,
-  }),
-  repeatPassword: Type.String({
     minLength: 8,
     maxLength: 20,
     pattern: passwordRegex.source,
