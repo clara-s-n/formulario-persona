@@ -87,7 +87,7 @@ button:hover {
     margin: 20px auto;
 }
 
-.nombre-apellido {
+.name-lastname {
     display: flex;
     gap: 10px;
     font-size: 25px;
@@ -101,7 +101,7 @@ button:hover {
     font-size: 16px;
 }
 
-.rounded-square p#cedula {
+.rounded-square p#countryId {
     font-size: 16px;
 }
 
