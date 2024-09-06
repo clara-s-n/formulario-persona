@@ -12,13 +12,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/personas",
+					"raw": "http://localhost/backend/personas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
 					"path": [
+						"backend",
 						"personas"
 					]
 				}
@@ -31,13 +31,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/personas/1",
+					"raw": "http://localhost/backend/personas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
 					"path": [
+						"backend",
 						"personas",
 						"1"
 					]
@@ -52,7 +52,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"0\",\r\n    \"nombre\": \"Alo\",\r\n    \"apellido\": \"Lu\",\r\n    \"email\": \"lucas.perez@example.com\",\r\n    \"cedula\": \"4.510.094-6\",\r\n    \"rut\": \"213971680013\",\r\n    \"contraseña\": \"Asd-1234\",\r\n    \"repetirContraseña\" : \"Asd-1234\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"lastname\": \"Sena\",\r\n    \"email\": \"ana.sena@example.com\",\r\n    \"countryId\": \"5.483.596-8\",\r\n    \"rut\": \"130057830019\",\r\n    \"password\": \"Asd-1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,13 +60,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/personas",
+					"raw": "http://localhost/backend/personas",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
 					"path": [
+						"backend",
 						"personas"
 					]
 				}
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"0\",\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Pérez\",\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"cedula\": \"4.510.094-6\",\r\n    \"rut\": \"213971680013\",\r\n    \"contraseña\": \"Asd-1234\",\r\n    \"repetirContraseña\" : \"Asd-1234\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Clara\",\r\n    \"countryId\": \"5.483.596-8\",\r\n    \"rut\": \"150046270011\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,15 +88,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/personas/2",
+					"raw": "http://localhost/backend/personas/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
 					"path": [
+						"backend",
 						"personas",
-						"2"
+						"7"
 					]
 				}
 			},
@@ -108,15 +108,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/personas/3",
+					"raw": "http://localhost/backend/personas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
 					"path": [
+						"backend",
 						"personas",
-						"3"
+						"1"
 					]
 				}
 			},
