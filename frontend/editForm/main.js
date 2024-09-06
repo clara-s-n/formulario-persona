@@ -159,7 +159,7 @@ async function obtenerDatosPersona() {
             document.getElementById('name').value = persona.name;
             document.getElementById('lastname').value = persona.lastname;
             document.getElementById('email').value = persona.email;
-            document.getElementById('countryId').value = persona.countryId;
+            document.getElementById('countryId').value = persona.countryid;
             document.getElementById('rut').value = persona.rut;
         } else {
             console.error('Error al obtener los datos de la persona');
