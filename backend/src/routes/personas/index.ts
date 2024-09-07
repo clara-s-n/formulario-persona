@@ -15,6 +15,7 @@ const personaRoute: FastifyPluginAsync = async (
     schema: {
       tags: ["persona"]
     },
+    onRequest: fastify.authenticate,
     handler: async function (request, reply) {
       const res = await query(`select
         id,
