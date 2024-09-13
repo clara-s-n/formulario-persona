@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado</title>
-    <link rel="stylesheet" href="peopleList/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <h1>Personas registradas</h1>
-    <div id="personList">
-        <div class="card add-person-card" id="add-person-card">
-            <div class="container">
-                <h1>Agregar Persona</h1>
-                <button id="addPerson" aria-label="Agregar nueva persona" title="Agregar nueva persona">
-                    <i class="fas fa-user-plus" aria-hidden="true"></i>
-                    <span class="sr-only">Agregar Persona</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <script src="peopleList/script.js"></script>
+<div class="container">
+  <h1>Iniciar sesión</h1>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+  <div id="message"></div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,2 +1,4 @@
 ## Ignoramos la carpeta .idea
 .idea
+.env
+certs
