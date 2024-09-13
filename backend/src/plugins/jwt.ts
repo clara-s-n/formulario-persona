@@ -1,13 +1,13 @@
 import jwt, { FastifyJWTOptions } from "@fastify/jwt";
 import fp from "fastify-plugin";
-import { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest, FastifyInstance } from "fastify";
 import { authenticateFunction } from '../tipos/fastify.js';
 
 const jwtOptions: FastifyJWTOptions = {
-    secret: 'supersecret'
+    secret: 'supersecret',
 };
 
-export default fp<FastifyJWTOptions>(async (fastify) => {
+export default fp(async (fastify: FastifyInstance) => {
     fastify.register(jwt, jwtOptions);
 
     const authenticate: authenticateFunction = async (request: FastifyRequest, reply: FastifyReply) => {
