@@ -25,10 +25,13 @@ services:
     volumes:
       - ./backend:/backend
     environment:
-      - PG_DATABASE=${DB_DATABASE}
-      - PG_USER=${DB_USERNAME}
-      - PG_PASSWORD=${DB_PASSWORD}
-      - PG_HOST=database
+      - PGDATABASE=${DB_DATABASE}
+      - PGUSER=${DB_USERNAME}
+      - PGPASSWORD=${DB_PASSWORD}
+      - PGHOST=database
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_SECRET}
+      - FRONTEND_URL=${FRONT_URL}
 
   frontend:
     container_name: frontend

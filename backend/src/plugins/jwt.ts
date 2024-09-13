@@ -1,18 +1,22 @@
-import jwt, {FastifyJWTOptions} from "@fastify/jwt";
+import jwt, { FastifyJWTOptions } from "@fastify/jwt";
 import fp from "fastify-plugin";
-import {FastifyReply, FastifyRequest} from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
+import { authenticateFunction } from '../tipos/fastify.js';
 
 const jwtOptions: FastifyJWTOptions = {
-    secret:'supersecret'
+    secret: 'supersecret'
 };
 
 export default fp<FastifyJWTOptions>(async (fastify) => {
     fastify.register(jwt, jwtOptions);
-    fastify.decorate("authenticate", async function (request: FastifyRequest, reply: FastifyReply) {
+
+    const authenticate: authenticateFunction = async (request: FastifyRequest, reply: FastifyReply) => {
         try {
             await request.jwtVerify();
         } catch (err) {
-            reply.send(err);
+            reply.code(401).send({ error: 'Unauthorized' });
         }
-    });
+    };
+
+    fastify.decorate("authenticate", authenticate);
 });
