@@ -8,12 +8,11 @@ services:
       - "443:443"
     volumes:
       - ./nginx/templates:/etc/nginx/templates
+      # Acá agregamos la carpeta certs
       - ./certs:/etc/nginx/certs
     environment:
       - FRONTEND_URL=${FRONTEND_URL}
       - BACKEND_URL=${BACKEND_URL}
-      - GOOGLE_ID=${GOOGLE_CLIENT}
-      - GOOGLE_SECRET=${GOOGLE_SECRET}
     depends_on:
       - backend
       - frontend
