@@ -1,9 +1,31 @@
 server {
+
     listen 80;
+
+    listen [::]:80;
+
+    server_name ${FRONT_URL};
+
+    return 301 https://$host$request_uri;
+
+}
+
+
+
+server {
+    listen       443 ssl;
+
+    server_name  ${FRONT_URL};
+
+    ssl_certificate /etc/nginx/certs/ucu.crt;
+
+    ssl_certificate_key /etc/nginx/certs/ucu.key;
+
+
 
     location / {
 
-        proxy_pass ${FRONTEND_URL};
+        proxy_pass http://frontend;
 
         proxy_http_version 1.1;
 
@@ -17,11 +39,13 @@ server {
 
     }
 
+
+
     location /backend/ {
 
         rewrite  ^/backend(.*)$ $1 break;
 
-        proxy_pass ${BACKEND_URL};
+        proxy_pass http://backend:3000;
 
         proxy_http_version 1.1;
 
@@ -36,5 +60,27 @@ server {
         proxy_cache_bypass $http_upgrade;
 
     }
+
+
+
+    location /reference/ {
+
+        proxy_pass http://backend:3000;
+
+        proxy_http_version 1.1;
+
+        proxy_set_header Upgrade $http_upgrade;
+
+        proxy_set_header Connection 'upgrade';
+
+        proxy_set_header Host $host;
+
+        proxy_set_header Referer $sent_http_referer;
+
+        proxy_cache_bypass $http_upgrade;
+
+    }
+
+
 
 }

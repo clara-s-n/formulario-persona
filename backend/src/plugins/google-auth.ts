@@ -1,4 +1,4 @@
-import oauthPlugin, {FastifyOAuth2Options} from 'fastify-oauth2';
+import oauthPlugin, { FastifyOAuth2Options } from '@fastify/oauth2';
 import fp from 'fastify-plugin';
 
 export default fp(async (fastify ) => {
@@ -24,5 +24,5 @@ export default fp(async (fastify ) => {
         // use of this parameter is highly encouraged
         // in order to prevent authorization code interception attacks
     };
-    fastify.register(oauthPlugin.fastifyOauth2, googleOAuth2Options);
+    fastify.register(oauthPlugin.fastifyOauth2, googleOAuth20ptions);
 });
