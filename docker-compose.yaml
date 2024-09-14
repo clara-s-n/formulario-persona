@@ -35,6 +35,7 @@ services:
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_SECRET}
       - FRONTEND_URL=${FRONT_URL}
+      - FRONT_URL=${FRONT_URL}
 
   frontend:
     container_name: frontend

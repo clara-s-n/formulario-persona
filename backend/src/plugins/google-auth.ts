@@ -12,8 +12,8 @@ export default fp(async (fastify ) => {
             },
             auth: oauthPlugin.fastifyOauth2.GOOGLE_CONFIGURATION,
         },
-        startRedirectPath: '/login/google',
-        callbackUri: `http://${process.env.FRONT_URL}/login/google/callback`,
+        startRedirectPath: '/auth/login/google',
+        callbackUri: `https://${process.env.FRONT_URL}/backend/auth/login/google/callback`,
         callbackUriParams: {
             // custom query param that will be passed to callbackUri
             access_type: 'offline', // will tell Google to send a refreshToken too
