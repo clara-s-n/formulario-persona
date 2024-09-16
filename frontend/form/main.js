@@ -23,7 +23,7 @@ listadoBtn.addEventListener('click', function (e) {
 });
 
 // Logic for registering people
-const API_URL = 'http://localhost/backend/personas';
+const API_URL = 'https://localhost/backend/personas';
 
 // Modify the registration function to send data to the backend
 registrarBtn.addEventListener('click', async function (e) {

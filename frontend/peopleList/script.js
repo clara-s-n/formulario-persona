@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/backend';
+const API_URL = 'https://localhost/backend';
 const personList = document.getElementById('personList');
 
 async function getPersonList() {

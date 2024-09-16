@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/backend';
+const API_URL = 'https://localhost/backend';
 
 // Función para manejar el login
 async function login(email, password) {

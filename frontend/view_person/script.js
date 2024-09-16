@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/backend/personas';
+const API_URL = 'https://localhost/backend/personas';
 
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);

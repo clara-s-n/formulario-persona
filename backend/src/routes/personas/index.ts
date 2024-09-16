@@ -108,8 +108,8 @@ const personaRoute: FastifyPluginAsync = async (
       body: PersonaPutSchema,
       response: {
         200: {
-          type: "object",
-          properties: PersonaPostSchema,
+            type: "object",
+            properties: PersonaSchema.properties,
         },
         404: {
           type: "object",
@@ -149,7 +149,7 @@ const personaRoute: FastifyPluginAsync = async (
       response: {
         200: {
           type: "object",
-          properties: PersonaSchema,
+          properties: PersonaSchema.properties,
         },
         404: {
           type: "object",

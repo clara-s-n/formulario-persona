@@ -1,7 +1,7 @@
 import Persona from "../models/persona.js";
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 
-const API_URL = 'http://localhost/backend';
+const API_URL = 'https://localhost/backend';
 
 const cancelarBtn = document.getElementById('cancelarBtn');
 const confirmarBtn = document.getElementById('confirmarBtn');
