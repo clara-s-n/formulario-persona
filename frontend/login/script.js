@@ -1,65 +1,30 @@
-const API_URL = 'https://localhost/backend';
+import { auth } from '../validations/auth.js';
 
-// Función para manejar el login
-async function login(email, password) {
-    try {
-        const response = await fetch(`${API_URL}/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Login failed');
-        }
-
-        const data = await response.json();
-        localStorage.setItem('token', data.token);
-        return data.token;
-    } catch (error) {
-        console.error('Error during login:', error);
-        throw error;
-    }
-}
-
-// Función para hacer peticiones autenticadas
-async function authenticatedFetch(url, options = {}) {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        throw new Error('No authentication token found');
-    }
-
-    const defaultOptions = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        },
-    };
-
-    const mergedOptions = {
-        ...defaultOptions,
-        ...options,
-        headers: {
-            ...defaultOptions.headers,
-            ...options.headers,
-        },
-    };
-
-    return fetch(url, mergedOptions);
-}
-
-// Manejar el envío del formulario de login
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     try {
-        await login(email, password);
-        document.getElementById('message').textContent = 'Login exitoso!';
-        // Aquí podrías redirigir al usuario a una página protegida
+        await auth.login(email, password);
+        // Mostramos un mensaje de éxito al usuario
+        window.alert('Login exitoso');
+        window.location.href = '../peopleList/index.html';
     } catch (error) {
-        document.getElementById('message').textContent = 'Error en el login. Por favor, intenta de nuevo.';
+        console.error('Login failed:', error);
+        window.alert('Login fallido: ' + error.message);
+        window.location.reload();
     }
 });
+/*
+// Para el login con Google, esto hay que verlo
+document.getElementById('googleLoginButton').addEventListener('click', async () => {
+    const googleToken = await getGoogleToken(); // Esta función hay que implementarla
+    try {
+        await auth.loginWithGoogle(googleToken);
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Google login failed:', error);
+        // Muestra un mensaje de error al usuario
+    }
+});*/
