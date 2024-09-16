@@ -15,7 +15,7 @@ async function getPersonList() {
         const addPersonButton = addPersonCard.querySelector('#addPerson');
         addPersonButton.addEventListener('click', () => {
             console.log('Botón "Agregar Persona" clickeado');
-            window.location.href = '../index.html';
+            window.location.href = '../form/index.html';
         });
 
         console.log('Creando tarjetas de personas');

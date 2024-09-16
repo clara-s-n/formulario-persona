@@ -9,3 +9,5 @@ declare module "fastify" {
         authenticate: authenticateFunction;
     }
 }
+
+export default authenticateFunction;

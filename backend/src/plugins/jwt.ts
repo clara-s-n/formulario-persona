@@ -7,7 +7,7 @@ const jwtOptions: FastifyJWTOptions = {
     secret: 'supersecret'
 };
 
-export default fp<FastifyJWTOptions>(async (fastify) => {
+export default fp(async (fastify) => {
     fastify.register(jwt, jwtOptions);
 
     const authenticate: authenticateFunction = async (request: FastifyRequest, reply: FastifyReply) => {
