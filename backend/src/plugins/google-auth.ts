@@ -10,7 +10,6 @@ export default fp(async (fastify ) => {
                 id: process.env.GOOGLE_CLIENT_ID || '',
                 secret: process.env.GOOGLE_CLIENT_SECRET || '',
             },
-            auth: oauthPlugin.fastifyOauth2.GOOGLE_CONFIGURATION,
         },
         startRedirectPath: '/auth/login/google',
         callbackUri: `https://${process.env.FRONT_URL}/backend/auth/login/google/callback`,
@@ -19,6 +18,9 @@ export default fp(async (fastify ) => {
             access_type: 'offline', // will tell Google to send a refreshToken too
         },
         pkce: 'S256',
+        discovery: {
+          issuer: 'https://accounts.google.com'
+        },
         // check if your provider supports PKCE,
         // in case they do,
         // use of this parameter is highly encouraged
