@@ -53,10 +53,9 @@ async function authenticatedFetch(url, options = {}) {
 window.onload = function() {
     const token = localStorage.getItem('token');
     if (token) {
-        window.location.href = '/.html';  // hay que cambiar la ruta para las personas permitidas
+        window.location.href = '../peoplelist/index.html'; 
     }
 };
-
 
 // Manejar el envío del formulario de login
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
@@ -67,7 +66,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     try {
         await login(email, password);
         document.getElementById('message').textContent = 'Login exitoso!';
-        // Aquí podrías redirigir al usuario a una página protegida
+        window.location.href = '../peoplelist/index.html';
     } catch (error) {
         document.getElementById('message').textContent = 'Error en el login. Por favor, intenta de nuevo.';
     }
@@ -88,6 +87,6 @@ function checkSession() {
         window.location.href = '../login/index.html';
     } else {
         console.log('Usuario autenticado');
-        // poner la pagina, para la pagina que tendra acceso la persona
+        window.location.href = '../peoplelist/index.html';
     }
 }
