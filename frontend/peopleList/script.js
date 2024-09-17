@@ -1,11 +1,30 @@
+// Importamos la validación desde auth.js
+// Importamos la función initNavbar desde navbar.js
+import { auth } from '../validations/auth.js';
+import { initNavbar, updateNavbar } from '../navbar/navbar.js';
+
 const API_URL = 'https://localhost/backend';
 const personList = document.getElementById('personList');
 
+if (!auth.isAuthenticated()) {
+    window.location.href = '../login/index.html';
+}
+else {
+    getPersonList();
+}
+// Inicializar la barra de navegación
+updateNavbar();
+
+// Función para obtener la lista de personas
 async function getPersonList() {
     console.log('Iniciando getPersonList()');
     try {
         console.log('Haciendo fetch a:', `${API_URL}/personas`);
-        const response = await fetch(`${API_URL}/personas`);
+        const response = await fetch(`${API_URL}/personas`, {
+            headers: {
+                'Authorization': `Bearer ${auth.token}`
+            }
+        });
         const data = await response.json();
         console.log('Datos recibidos:', data);
 
@@ -50,6 +69,3 @@ async function getPersonList() {
         console.error('Error al obtener el listado de personas:', error);
     }
 }
-
-console.log('Script cargado, llamando a getPersonList()');
-getPersonList();

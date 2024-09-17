@@ -3,7 +3,15 @@ const API_URL = 'https://localhost/backend';
 
 export const auth = {
     token: localStorage.getItem('token'),
-    user: JSON.parse(localStorage.getItem('user')),
+    user: (() => {
+        const storedUser = localStorage.getItem('user');
+        try {
+            return storedUser ? JSON.parse(storedUser) : null; // Retorna null si no hay datos
+        } catch {
+            console.error("Error parsing user from localStorage");
+            return null; // Retorna null si JSON.parse falla
+        }
+    })(),
 
     async login(email, password) {
         try {

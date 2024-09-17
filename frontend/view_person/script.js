@@ -1,3 +1,5 @@
+import {auth} from "../validations/auth";
+
 const API_URL = 'https://localhost/backend/personas';
 
 function getQueryParam(param) {
@@ -7,10 +9,15 @@ function getQueryParam(param) {
 
 const personId = getQueryParam('id');
 
-if (personId) {
-  fetchPersonData();
-} else {
-  console.error('ID de persona no proporcionado');
+if (!auth.isAuthenticated()) {
+  window.location.href = '../login/index.html';
+}
+else {
+  if (personId) {
+    fetchPersonData();
+  } else {
+    console.error('ID de persona no proporcionado');
+  }
 }
 
 async function fetchPersonData() {
@@ -19,6 +26,7 @@ async function fetchPersonData() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.token}`,
       },
     });
 

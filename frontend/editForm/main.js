@@ -1,5 +1,6 @@
 import Persona from "../models/persona.js";
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
+import { auth } from '../validations/auth.js';
 
 const API_URL = 'https://localhost/backend';
 
@@ -59,6 +60,7 @@ confirmarBtn.addEventListener('click', async function (e) {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth.token}`,
                 },
                 body: JSON.stringify(persona)
             });
@@ -87,11 +89,16 @@ async function obtenerDatosPersona() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${auth.token}`
             }
         });
 
         if (response.ok) {
             const persona = await response.json();
+            if (persona.id !== auth.getUser().id) {
+                window.location.alert('No tienes permisos para editar esta persona');
+                window.location.reload();
+            }
             document.getElementById('name').value = persona.name;
             document.getElementById('lastname').value = persona.lastname;
             document.getElementById('email').value = persona.email;

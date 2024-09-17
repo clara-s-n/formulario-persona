@@ -1,5 +1,3 @@
-// main.js
-
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 import  Persona  from '../models/persona.js';
 
