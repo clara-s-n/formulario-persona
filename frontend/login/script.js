@@ -49,6 +49,14 @@ async function authenticatedFetch(url, options = {}) {
     return fetch(url, mergedOptions);
 }
 
+// Verifica si el usuario está logueado al cargar la página
+window.onload = function() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = '../peoplelist/index.html'; 
+    }
+};
+
 // Manejar el envío del formulario de login
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -58,8 +66,27 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     try {
         await login(email, password);
         document.getElementById('message').textContent = 'Login exitoso!';
-        // Aquí podrías redirigir al usuario a una página protegida
+        window.location.href = '../peoplelist/index.html';
     } catch (error) {
         document.getElementById('message').textContent = 'Error en el login. Por favor, intenta de nuevo.';
     }
 });
+
+// Función para cerrar sesión
+function logout() {
+    localStorage.removeItem('token');
+    // Redirige al formulario de login
+    window.location.href = '../login/index.html'; 
+}
+
+// Verifica si hay una sesión activa en login
+function checkSession() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        // Si no existe el token, redirige al login
+        window.location.href = '../login/index.html';
+    } else {
+        console.log('Usuario autenticado');
+        window.location.href = '../peoplelist/index.html';
+    }
+}
