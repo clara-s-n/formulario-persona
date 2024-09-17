@@ -72,3 +72,22 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('message').textContent = 'Error en el login. Por favor, intenta de nuevo.';
     }
 });
+
+// Función para cerrar sesión
+function logout() {
+    localStorage.removeItem('token');
+    // Redirige al formulario de login
+    window.location.href = '../login/index.html'; 
+}
+
+// Verifica si hay una sesión activa en login
+function checkSession() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        // Si no existe el token, redirige al login
+        window.location.href = '../login/index.html';
+    } else {
+        console.log('Usuario autenticado');
+        // poner la pagina, para la pagina que tendra acceso la persona
+    }
+}
