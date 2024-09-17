@@ -44,18 +44,25 @@ function updateNavbar() {
     const peopleListItem = document.getElementById('people-list-item');
     const logoutItem = document.getElementById('logout-item');
 
+    if (!loginItem || !peopleListItem || !logoutItem) {
+        console.error('One or more navbar items not found');
+        return;
+    }
+
     if (auth.isAuthenticated()) {
         loginItem.style.display = 'none';
         peopleListItem.style.display = 'block';
         logoutItem.style.display = 'block';
 
-        // Añadir el evento de logout
-        document.getElementById('logout-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.logout();
-            updateNavbar();
-            window.location.href = '/login';
-        });
+        const logoutLink = document.getElementById('logout-link');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                auth.logout();
+                updateNavbar();
+                window.location.href = '/login';
+            });
+        }
     } else {
         loginItem.style.display = 'block';
         peopleListItem.style.display = 'none';
@@ -78,4 +85,3 @@ document.addEventListener('authChanged', updateNavbar);
 
 // Exportar la función updateNavbar para su uso en otros archivos si es necesario
 export { updateNavbar };
-
