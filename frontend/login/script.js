@@ -49,6 +49,15 @@ async function authenticatedFetch(url, options = {}) {
     return fetch(url, mergedOptions);
 }
 
+// Verifica si el usuario está logueado al cargar la página
+window.onload = function() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = '/.html';  // hay que cambiar la ruta para las personas permitidas
+    }
+};
+
+
 // Manejar el envío del formulario de login
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
