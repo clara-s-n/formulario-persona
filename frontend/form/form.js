@@ -1,12 +1,39 @@
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 import  Persona  from '../models/persona.js';
-import {initNavbar} from "../navbar/navbar";
+//import {initNavbar} from "../navbar/navbar";
 
-initNavbar()
+//initNavbar()
 const form = document.getElementById('registroForm');
 const registrarBtn = document.getElementById('registrarBtn');
 const cancelarBtn = document.getElementById('cancelarBtn');
 const listadoBtn = document.getElementById('listadoBtn');
+
+function getQueryParams() {
+    const googleParams = new URLSearchParams(window.location.search);
+    return {
+        email: googleParams.get('email'),
+        given_name: googleParams.get('given_name'),
+        family_name: googleParams.get('family_name')
+    };
+}
+
+// Función para rellenar el formulario con los datos de la URL
+function fillForm() {
+    const { email, given_name, family_name } = getQueryParams();
+
+    if (email) {
+        document.getElementById('email').value = email;
+    }
+    if (given_name) {
+        document.getElementById('name').value = given_name;
+    }
+    if (family_name) {
+        document.getElementById('lastname').value = family_name;
+    }
+}
+
+// Llamar a la función fillForm cuando la página se cargue para rellenar los campos
+window.onload = fillForm;
 
 // Set up form validation
 setupFormValidation('registroForm');

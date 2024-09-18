@@ -41,24 +41,14 @@ export const auth = {
 
     async loginWithGoogle(googleToken) {
         try {
-            const response = await fetch(`${API_URL}/auth/login/google`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: googleToken })
-            });
-
-            if (!response.ok) {
-                throw new Error('Google login failed');
+            // Verificar si el token existe
+            if (googleToken) {
+                // Almacenar el token en localStorage
+                localStorage.setItem('token', googleToken);
+            } else {
+                // Manejar el caso en que no haya token en la URL
+                console.error('Login con google no disponible');
             }
-
-            const data = await response.json();
-            this.token = data.token;
-            this.user = data.user;
-
-            localStorage.setItem('token', this.token);
-            localStorage.setItem('user', JSON.stringify(this.user));
-
-            return this.user;
         } catch (error) {
             console.error('Google login error:', error);
             throw error;

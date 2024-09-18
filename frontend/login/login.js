@@ -29,14 +29,17 @@ async function handleLogin(e) {
 
 async function handleGoogleLogin() {
     try {
-        const googleToken = await getGoogleToken(); // Implementar esta función
-        await auth.loginWithGoogle(googleToken);
-        handleSuccessfulLogin();
+        const googleToken = await getGoogleToken();
+        if (googleToken) {
+            await auth.loginWithGoogle(googleToken);
+            handleSuccessfulLogin();
+        } else {
+            console.error('No se encontró el token en la URL');
+        }
     } catch (error) {
         handleLoginError(error);
     }
 }
-
 function handleSuccessfulLogin() {
     window.alert('Login exitoso');
     document.dispatchEvent(new Event('authChanged'));
@@ -49,7 +52,13 @@ function handleLoginError(error) {
 }
 
 // Implementar esta función para obtener el token de Google
-async function getGoogleToken() {
-    // Lógica para obtener el token de Google
-    throw new Error('Función getGoogleToken no implementada');
+async function getGoogleToken() {   
+    // Obtener los parámetros de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    // Extraer el token del parámetro 'token'
+    const token = urlParams.get('token');
+
+    return token;
 }
+
+window.onload = handleGoogleLogin;
