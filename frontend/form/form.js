@@ -1,8 +1,8 @@
-// main.js
-
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 import  Persona  from '../models/persona.js';
+import {initNavbar} from "../navbar/navbar.js";
 
+initNavbar()
 const form = document.getElementById('registroForm');
 const registrarBtn = document.getElementById('registrarBtn');
 const cancelarBtn = document.getElementById('cancelarBtn');
@@ -23,7 +23,7 @@ listadoBtn.addEventListener('click', function (e) {
 });
 
 // Logic for registering people
-const API_URL = 'http://localhost/backend/personas';
+const API_URL = 'https://localhost/backend/personas';
 
 // Modify the registration function to send data to the backend
 registrarBtn.addEventListener('click', async function (e) {

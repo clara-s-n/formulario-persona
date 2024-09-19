@@ -7,7 +7,7 @@ const jwtOptions: FastifyJWTOptions = {
     secret: 'supersecret'
 };
 
-export default fp<FastifyJWTOptions>(async (fastify) => {
+export default fp(async (fastify) => {
     fastify.register(jwt, jwtOptions);
 
     const authenticate: authenticateFunction = async (request: FastifyRequest, reply: FastifyReply) => {
@@ -19,4 +19,20 @@ export default fp<FastifyJWTOptions>(async (fastify) => {
     };
 
     fastify.decorate("authenticate", authenticate);
+
+    // Verificamos que el usuario logueado es el mismo que el usuario que se quiere modificar
+    const verifyUserId: authenticateFunction = async (request: FastifyRequest, reply: FastifyReply) => {
+        try {
+            await request.jwtVerify();
+            const { id } = request.params as { id: string };
+            const { id: userId } = request.user as { id: string };
+            if (id !== userId) {
+                reply.code(401).send({ error: 'Unauthorized' });
+            }
+        } catch (err) {
+            reply.code(401).send({ error: 'Unauthorized' });
+        }
+    }
+
+    fastify.decorate("verifyUserId", verifyUserId);
 });
