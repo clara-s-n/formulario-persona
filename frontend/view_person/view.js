@@ -48,7 +48,7 @@ async function fetchPersonData() {
       document.getElementById('name').innerText = persona.name;
       document.getElementById('lastname').innerText = persona.lastname;
       document.getElementById('email').innerText = persona.email;
-      document.getElementById('countryId').innerText = persona.countryId;
+      document.getElementById('countryId').innerText = persona.countryid;
       document.getElementById('rut').innerText = persona.rut;
     } else {
       handleFetchError(response);

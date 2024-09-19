@@ -139,7 +139,7 @@ function populateForm(persona) {
     document.getElementById('name').value = persona.name;
     document.getElementById('lastname').value = persona.lastname;
     document.getElementById('email').value = persona.email;
-    document.getElementById('countryId').value = persona.countryId;
+    document.getElementById('countryId').value = persona.countryid;
     document.getElementById('rut').value = persona.rut;
 }
 
