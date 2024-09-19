@@ -23,7 +23,7 @@ const authRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         return;
       }
       const user = res.rows[0];
-      if (!bcrypt.compare(password, user.password)) {
+      if (!await bcrypt.compare(password, user.password)) {
         reply.code(401).send({ message: 'Contraseña incorrecta' });
         return;
       }
