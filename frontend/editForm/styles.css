@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
+
 html {
     font-family: 'Merriweather';
 }
 
 body {
-    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
+}
+
+.formBody {
+    max-width: 600px;
 }
 
 h1 {

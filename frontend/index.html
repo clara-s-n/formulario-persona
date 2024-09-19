@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../navbar/navbar.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar/navbar.css">
 </head>
+
 <body>
 <header id="header"></header>
-<div class="wrapper">
-    <article class="main">
-        <h1>Seleccione una opción para continuar</h1>
-        <div class="publication-grid">
-            <a href="form/index.html" class="publication-item">
-                <img src="https://static.vecteezy.com/system/resources/previews/010/287/641/non_2x/add-user-icon-isolated-on-a-white-background-add-friendship-symbol-for-web-and-mobile-apps-free-vector.jpg" alt="Biblioteca">
-                <span>Crear una cuenta</span>
-            </a>
-            <a href="login/index.html" class="publication-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/891/891389.png" alt="Ingresar">
-                <span>Iniciar sesión</span>
-            </a>
-            <a href="https://localhost/backend/auth/login/google" class="publication-item">
-                <img src="https://logos-world.net/wp-content/uploads/2020/09/Google-Symbol.png" alt="Logo de google">
-                <span>Iniciar sesión con una cuenta de google</span>
-            </a>
-        </div>
-    </article>
+<div class="container">
+  <h1>Iniciar sesión</h1>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+
+  <button id="googleLogin">Iniciar sesión con Google</button>
+
+  <button id="register">Regístrate</button>
+  <div id="message"></div>
 </div>
-<script type="module" src="main.js"></script>
+<script type="module" src="login.js"></script>
+<script type="module" src="validations/auth.js"></script>
 </body>
 </html>
