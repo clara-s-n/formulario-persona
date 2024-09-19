@@ -26,8 +26,8 @@ export default fp(async (fastify) => {
             await request.jwtVerify();
             const { id } = request.params as { id: string };
             const { id: userId } = request.user as { id: string };
-            if (id !== userId) {
-                reply.code(401).send({ error: 'Unauthorized' });
+            if (String(id) !== String(userId)) {
+                reply.code(401).send({ error: 'You can not modify other users' });
             }
         } catch (err) {
             reply.code(401).send({ error: 'Unauthorized' });

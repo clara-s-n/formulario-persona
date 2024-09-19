@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const personId = getQueryParam('id');
 
-    if (personId) {
+    const userId = String(auth.getId());
+
+    if (personId === userId) {
         initNavbar();
         obtenerDatosPersona();
     } else {
-        console.error('ID de persona no proporcionado');
-        alert('Error: ID de persona no proporcionado');
+        console.error('No tienes permisos para editar a esta persona');
+        alert('No tienes permisos para editar a esta persona');
         window.location.href = '/';
     }
 
