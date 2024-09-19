@@ -2,6 +2,7 @@
 const API_URL = 'https://localhost/backend';
 
 export const auth = {
+    id: localStorage.getItem('id'),
     token: localStorage.getItem('token'),
     user: (() => {
         const storedUser = localStorage.getItem('user');
@@ -28,9 +29,11 @@ export const auth = {
             const data = await response.json();
             this.token = data.token;
             this.user = data.user;
+            this.id = data.id;
 
             localStorage.setItem('token', this.token);
             localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('id', this.id);
 
             return this.user;
         } catch (error) {
@@ -76,6 +79,11 @@ export const auth = {
         return this.user;
     },
 
+    getId(){
+        const payload = this.getPayload();
+        return payload ? payload.id : null;
+
+    },
     async verifyToken() {
         if (!this.token) return false;
 
@@ -95,5 +103,12 @@ export const auth = {
             this.logout();
             return false;
         }
+    },
+
+    getPayload() {
+        if (!this.token) return null;
+        const arrayToken = this.token.split('.') // Divide el token en 3 partes
+        const payload = JSON.parse(atob(arrayToken[1])) // Decodifica la parte del payload
+        return payload;
     }
 };

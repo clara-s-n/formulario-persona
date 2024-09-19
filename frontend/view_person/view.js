@@ -1,7 +1,6 @@
 import { auth } from "../validations/auth.js";
 import { initNavbar } from "../navbar/navbar.js";
 
-
 const API_URL = 'https://localhost/backend/personas';
 
 function getQueryParam(param) {
@@ -26,27 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  displayUserInfo();
-
   document.getElementById('volverBtn').addEventListener('click', () => {
-    window.location.href = '/';
+    window.location.href = '/peopleList';
   });
 
   document.getElementById('eliminarBtn').addEventListener('click', deletePerson);
-  document.getElementById('editarBtn').addEventListener('click', () => {
-    window.location.href = `../editForm/index.html?id=${personId}`;
-  });
+  document.getElementById('editarBtn').addEventListener('click', editPerson);
 });
-
-function displayUserInfo() {
-  const userInfo = auth.getUser();
-  if (userInfo) {
-    const userInfoElement = document.createElement('div');
-    userInfoElement.textContent = `Usuario: ${userInfo.name} ${userInfo.lastname}`;
-    userInfoElement.classList.add('text-sm', 'text-gray-600', 'mb-4');
-    document.querySelector('.container').prepend(userInfoElement);
-  }
-}
 
 async function fetchPersonData() {
   try {
@@ -60,7 +45,11 @@ async function fetchPersonData() {
 
     if (response.ok) {
       const persona = await response.json();
-      displayPersonData(persona);
+      document.getElementById('name').innerText = persona.name;
+      document.getElementById('lastname').innerText = persona.lastname;
+      document.getElementById('email').innerText = persona.email;
+      document.getElementById('countryId').innerText = persona.countryId;
+      document.getElementById('rut').innerText = persona.rut;
     } else {
       handleFetchError(response);
     }
@@ -70,28 +59,21 @@ async function fetchPersonData() {
   }
 }
 
-function displayPersonData(persona) {
-  document.getElementById('name').textContent = persona.name;
-  document.getElementById('lastname').textContent = persona.lastname;
-  document.getElementById('email').textContent = persona.email;
-  document.getElementById('countryId').textContent = persona.countryid;
-  document.getElementById('rut').textContent = persona.rut;
-
-  // Disable edit and delete buttons if the user is not the owner
-  const currentUser = auth.getUser();
-  if (currentUser.id !== persona.id) {
-    document.getElementById('editarBtn').disabled = true;
-    document.getElementById('eliminarBtn').disabled = true;
-    document.getElementById('editarBtn').classList.add('opacity-50', 'cursor-not-allowed');
-    document.getElementById('eliminarBtn').classList.add('opacity-50', 'cursor-not-allowed');
-  }
-}
 
 async function deletePerson() {
   const confirmDelete = confirm("¿Seguro que desea eliminar esta persona?");
   if (!confirmDelete) return;
-
   try {
+    // Si el id de la persona no es el mismo que el del usuario autenticado, no permitir la eliminación
+    const userId = auth.getId();
+    console.log('User ID:', userId);
+    console.log('Person ID:', personId);
+    if (String(userId) !== String(personId)) {
+      alert('No tienes permisos para eliminar esta persona');
+      return;
+    }
+
+
     const response = await fetch(`${API_URL}/${personId}`, {
       method: 'DELETE',
       headers: {
@@ -102,6 +84,11 @@ async function deletePerson() {
 
     if (response.ok) {
       alert('Persona eliminada con éxito');
+
+      // Eliminamos al token del local storage
+      auth.logout();
+
+      // Redirigimos al usuario a la página de login
       window.location.href = '/';
     } else {
       handleFetchError(response);
@@ -110,6 +97,17 @@ async function deletePerson() {
     console.error('Error al eliminar la persona:', error);
     alert('Error al eliminar la persona');
   }
+}
+
+async function editPerson(){
+  const userId = auth.getId();
+    console.log('User ID:', userId);
+    console.log('Person ID:', personId);
+    if (String(userId) !== String(personId)) {
+      alert('No tienes permisos para editar esta persona');
+      return;
+    }
+    window.location.href = `../editForm/index.html?id=${personId}`;
 }
 
 function handleFetchError(response) {

@@ -30,7 +30,7 @@ async function handleLogin(e) {
 async function handleGoogleLogin() {
     try {
         const googleInfo = await getGoogleInfo();
-        if (googleInfo) {
+        if (googleInfo.get('token')) {
             await auth.loginWithGoogle(googleInfo);
             handleSuccessfulLogin();
         } else {

@@ -1,5 +1,5 @@
 import { auth } from '../validations/auth.js';
-import { initNavbar} from '../navbar/navbar.js';
+import {initNavbar} from '../navbar/navbar.js';
 
 const API_URL = 'https://localhost/backend';
 const personList = document.getElementById('personList');
