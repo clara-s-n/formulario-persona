@@ -1,6 +1,6 @@
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 import  Persona  from '../models/persona.js';
-import {initNavbar} from "../navbar/navbar";
+import {initNavbar} from "../navbar/navbar.js";
 
 initNavbar()
 const form = document.getElementById('registroForm');
