@@ -37,7 +37,6 @@ async function getPersonList() {
 }
 
 function renderPersonList(people) {
-    personList.innerHTML = ''; // Clear existing list
     people.forEach(person => {
         const card = createPersonCard(person);
         personList.appendChild(card);

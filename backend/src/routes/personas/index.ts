@@ -5,8 +5,7 @@ import {
   PersonaPutSchema,
   PersonaPutType,
   PersonaPostType,
-  PersonaPostSchema,
-  PersonaSchema
+  PersonaPostSchema
 } from "../../tipos/persona.js";
 import { validateCedula } from "../../validations/idAlgorithm.js";
 import { validateRut } from "../../validations/rutAlgorithm.js";
@@ -119,18 +118,6 @@ const personaRoute: FastifyPluginAsync = async (
     schema: {
       tags: ["persona"],
       params: PersonaIdSchema,
-      response: {
-        200: {
-          type: "object",
-          properties: PersonaSchema.properties,
-        },
-        404: {
-          type: "object",
-          properties: {
-            message: { type: "string" },
-          },
-        },
-      },
     },
     onRequest: fastify.authenticate,
     handler: async function (request, reply) {

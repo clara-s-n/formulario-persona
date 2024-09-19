@@ -8,7 +8,6 @@ const API_URL = 'https://localhost/backend';
 document.addEventListener('DOMContentLoaded', () => {
     const cancelarBtn = document.getElementById('cancelarBtn');
     const confirmarBtn = document.getElementById('confirmarBtn');
-    const form = document.getElementById('editForm');
 
     const personId = getQueryParam('id');
 
@@ -36,8 +35,7 @@ function getQueryParam(param) {
 }
 
 function displayUserInfo() {
-    const userInfo = auth.getUser();
-    if (userInfo) {
+    const userInfo = auth.getUser();    if (userInfo) {
         const userInfoElement = document.createElement('div');
         userInfoElement.textContent = `Usuario: ${userInfo.name} ${userInfo.lastname}`;
         userInfoElement.classList.add('text-sm', 'text-gray-600', 'mb-4');
@@ -80,19 +78,18 @@ function validateForm(form) {
 }
 
 function createPersonaFromForm() {
-    return new Persona(
+    const persona = new Persona(
         document.getElementById('name').value,
         document.getElementById('lastname').value,
         document.getElementById('email').value,
         document.getElementById('countryId').value,
-        document.getElementById('rut').value,
-        document.getElementById('password').value,
-        document.getElementById('repeatPassword').value,
+        document.getElementById('rut').value
     );
+    return persona;
 }
 
 async function updatePersona(persona) {
-    const personId = getQueryParam('id');
+    const personId=String(auth.getId());
     try {
         const response = await fetch(`${API_URL}/personas/${personId}`, {
             method: 'PUT',
@@ -128,11 +125,6 @@ async function obtenerDatosPersona() {
 
         if (response.ok) {
             const persona = await response.json();
-            if (persona.id !== auth.getUser().id) {
-                alert('No tienes permisos para editar esta persona');
-                window.location.href = '/';
-                return;
-            }
             populateForm(persona);
         } else {
             handleFetchError(response);
@@ -147,7 +139,7 @@ function populateForm(persona) {
     document.getElementById('name').value = persona.name;
     document.getElementById('lastname').value = persona.lastname;
     document.getElementById('email').value = persona.email;
-    document.getElementById('countryId').value = persona.countryid;
+    document.getElementById('countryId').value = persona.countryId;
     document.getElementById('rut').value = persona.rut;
 }
 
