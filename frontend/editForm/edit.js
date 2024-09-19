@@ -167,7 +167,7 @@ async function doPost(event) {
     } catch (error) {
       console.error("Error:", error);
     }
-  }
+}
 
 function populateForm(persona) {
     document.getElementById('name').value = persona.name;

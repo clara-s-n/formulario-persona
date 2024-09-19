@@ -101,4 +101,4 @@ async function doPost(event) {
     } catch (error) {
       console.error("Error:", error);
     }
-  }
+}
