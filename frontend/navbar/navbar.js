@@ -36,6 +36,7 @@ const navbarHTML = `
       </a>
     </li>
   </ul>
+  <div id="user-info"></div> 
 </nav>
 `;
 
@@ -43,6 +44,7 @@ function updateNavbar() {
     const loginItem = document.getElementById('login-item');
     const peopleListItem = document.getElementById('people-list-item');
     const logoutItem = document.getElementById('logout-item');
+    const userInfoElement = document.getElementById('user-info');
 
     if (!loginItem || !peopleListItem || !logoutItem) {
         console.error('One or more navbar items not found');
@@ -53,6 +55,10 @@ function updateNavbar() {
         loginItem.style.display = 'none';
         peopleListItem.style.display = 'block';
         logoutItem.style.display = 'block';
+        const userInfo = auth.getUser();
+        if (userInfo) {
+            userInfoElement.textContent = `Usuario: ${userInfo.name} ${userInfo.lastname}`;
+        }
 
         const logoutLink = document.getElementById('logout-link');
         if (logoutLink) {
