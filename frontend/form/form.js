@@ -59,6 +59,7 @@ registrarBtn.addEventListener('click', async function (e) {
 
             if (response.ok) {
                 alert('Registro exitoso');
+                await doPost(e);
                 window.location.href = '/';
             } else {
                 alert('Error al registrar la persona');
