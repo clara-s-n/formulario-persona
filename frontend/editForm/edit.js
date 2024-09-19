@@ -1,7 +1,7 @@
 import Persona from "../models/persona.js";
 import { validateField, setupFormValidation } from '../validations/fieldValidations.js';
 import { auth } from '../validations/auth.js';
-import {initNavbar} from "../navbar/navbar";
+import {initNavbar} from "../navbar/navbar.js";
 
 const API_URL = 'https://localhost/backend';
 

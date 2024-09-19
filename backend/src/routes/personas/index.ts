@@ -70,24 +70,9 @@ const personaRoute: FastifyPluginAsync = async (
     schema: {
       tags: ["persona"],
       params: PersonaIdSchema,
-      response: {
-        200: {
-          type: "object",
-          properties: {
-            message: {type: "string"},
-            id: {type: "number"},
-          },
-        },
-        404: {
-          type: "object",
-          properties: {
-            message: {type: "string"},
-          },
-        }
-      }
     },
     // Verificamos que se autentique y que sea el mismo id
-    onRequest: fastify.authenticate,
+    onRequest: fastify.verifyUserId,
     handler: async function (request, reply) {
       const { id } = request.params as { id: string };
       // Eliminamos la persona de la base de datos
@@ -106,20 +91,8 @@ const personaRoute: FastifyPluginAsync = async (
       tags: ["persona"],
       params: PersonaIdSchema,
       body: PersonaPutSchema,
-      response: {
-        200: {
-            type: "object",
-            properties: PersonaSchema.properties,
-        },
-        404: {
-          type: "object",
-          properties: {
-            message: { type: "string" },
-          },
-        },
-      },
     },
-    onRequest: fastify.authenticate,
+    onRequest: fastify.verifyUserId,
     preHandler: [validateCedula, validateRut],
     handler: async function (request, reply) {
       const {id} = request.params as { id: string };

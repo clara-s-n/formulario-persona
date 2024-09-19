@@ -1,3 +1,3 @@
-import {initNavbar} from "./navbar/navbar";
+import {initNavbar} from "./navbar/navbar.js";
 
 initNavbar();
