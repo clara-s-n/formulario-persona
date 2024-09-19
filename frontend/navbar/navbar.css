@@ -16,7 +16,7 @@ header {
 .navbar {
     position: fixed;
     width: 100%;
-    background-color: rgb(153, 198, 213);
+    background-color: #B59E79;
     transition: width 200ms ease;
     justify-content: left;
 }
@@ -53,9 +53,7 @@ header {
     color: #562155;
 }
 
-.link-text {
-    display: none;
-}
+
 
 .navbar img {
     max-width: 5rem;
@@ -69,7 +67,7 @@ header {
 }
 
 .navbar .nav-link svg {
-    min-width: 2rem;
+    width: 2rem;
     margin: 0 1.5rem;
 }
 

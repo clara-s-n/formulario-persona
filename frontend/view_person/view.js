@@ -1,5 +1,6 @@
-import { auth } from "../validations/auth";
-import { initNavbar } from "../navbar/navbar";
+import { auth } from "../validations/auth.js";
+import { initNavbar } from "../navbar/navbar.js";
+
 
 const API_URL = 'https://localhost/backend/personas';
 
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!auth.isAuthenticated()) {
     window.location.href = '../login/index.html';
   } else {
+    
     if (personId) {
       initNavbar();
       fetchPersonData();

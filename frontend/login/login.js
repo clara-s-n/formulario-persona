@@ -29,9 +29,9 @@ async function handleLogin(e) {
 
 async function handleGoogleLogin() {
     try {
-        const googleToken = await getGoogleToken();
-        if (googleToken) {
-            await auth.loginWithGoogle(googleToken);
+        const googleInfo = await getGoogleInfo();
+        if (googleInfo) {
+            await auth.loginWithGoogle(googleInfo);
             handleSuccessfulLogin();
         } else {
             console.error('No se encontró el token en la URL');
@@ -52,13 +52,11 @@ function handleLoginError(error) {
 }
 
 // Implementar esta función para obtener el token de Google
-async function getGoogleToken() {   
+async function getGoogleInfo() {   
     // Obtener los parámetros de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    // Extraer el token del parámetro 'token'
-    const token = urlParams.get('token');
 
-    return token;
+    return urlParams;
 }
 
 window.onload = handleGoogleLogin;

@@ -39,12 +39,18 @@ export const auth = {
         }
     },
 
-    async loginWithGoogle(googleToken) {
+    async loginWithGoogle(googleInfo) {
         try {
             // Verificar si el token existe
-            if (googleToken) {
+            if (googleInfo) {
+                // Extraer el token del parámetro 'token'
+                const googleToken = googleInfo.get('token');
                 // Almacenar el token en localStorage
                 localStorage.setItem('token', googleToken);
+                // Extraer el usuario del parametro 'user'
+                const googleUser = googleInfo.get('user');
+                // Almacenar el usuario en localStorage
+                localStorage.setItem('user', googleUser);
             } else {
                 // Manejar el caso en que no haya token en la URL
                 console.error('Login con google no disponible');

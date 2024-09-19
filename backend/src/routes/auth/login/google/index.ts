@@ -30,7 +30,7 @@ const googleAuth: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
                   }
                 const user = res.rows[0];
                 const token = fastify.jwt.sign({ id: user.id });
-                reply.redirect(`https://localhost/login?token=${token}`)
+                reply.redirect(`https://localhost/login?token=${token}&user=${user}`)
 
 
             } catch (error) {
