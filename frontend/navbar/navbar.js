@@ -47,6 +47,7 @@ function updateNavbar() {
         loginItem.style.display = 'none';
         peopleListItem.style.display = 'block';
         logoutItem.style.display = 'block';
+        userInfoElement.style.display = 'block';
         const userInfo = auth.getUser();
         if (userInfo) {
             userInfoElement.textContent = `Usuario: ${userInfo.name} ${userInfo.lastname}`;

@@ -14,11 +14,13 @@ header {
 }
 
 .navbar {
+    display: flex;
+    align-items: center;
     position: fixed;
     width: 100%;
     background-color: #B59E79;
     transition: width 200ms ease;
-    justify-content: left;
+    justify-content: space-between;
 }
 
 .navbar:hover .navbar-nav {
@@ -80,4 +82,8 @@ header {
     margin: auto;
     overflow: hidden;
     padding: 20px;
+}
+
+#user-info {
+    margin-right: 20px; 
 }
