@@ -3,16 +3,8 @@ import { auth } from '../validations/auth.js';
 const navbarHTML = `
 <nav class="navbar">
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a href="/" class="nav-link" id="home-link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-          <path fill="currentColor" class="fa-primary" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
-        </svg>
-        <span class="link-text">Home</span>
-      </a>
-    </li>
     <li class="nav-item" id="login-item">
-      <a href="/login" class="nav-link">
+      <a href="/" class="nav-link">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path fill="currentColor" class="fa-primary" d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
         </svg>
@@ -46,7 +38,7 @@ function updateNavbar() {
     const logoutItem = document.getElementById('logout-item');
     const userInfoElement = document.getElementById('user-info');
 
-    if (!loginItem || !peopleListItem || !logoutItem) {
+    if (!loginItem || !peopleListItem || !logoutItem || !userInfoElement) {
         console.error('One or more navbar items not found');
         return;
     }
@@ -66,13 +58,14 @@ function updateNavbar() {
                 e.preventDefault();
                 auth.logout();
                 updateNavbar();
-                window.location.href = '/login';
+                window.location.href = '/';
             });
         }
     } else {
         loginItem.style.display = 'block';
         peopleListItem.style.display = 'none';
         logoutItem.style.display = 'none';
+        userInfoElement.textContent = '';
     }
 }
 

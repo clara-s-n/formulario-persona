@@ -15,12 +15,12 @@
   <form id="loginForm">
     <input type="email" id="email" placeholder="Email" required>
     <input type="password" id="password" placeholder="Contraseña" required>
-    <button type="submit">Iniciar sesión</button>
+    <div class="button-container">
+      <button type="submit">Iniciar sesión</button>
+      <button id="googleLogin">Iniciar sesión con Google</button>
+      <button id="register">Regístrate</button>
+    </div>
   </form>
-
-  <button id="googleLogin">Iniciar sesión con Google</button>
-
-  <button id="register">Regístrate</button>
   <div id="message"></div>
 </div>
 <script type="module" src="login.js"></script>

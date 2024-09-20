@@ -1,6 +1,11 @@
 import { auth } from './validations/auth.js';
 import { initNavbar } from './navbar/navbar.js';
 
+// Si ya está autenticado, redirigir a la lista de personas
+if (auth.isAuthenticated()) {
+    window.location.href = 'peopleList/index.html';
+}
+
 // Inicializar la barra de navegación
 initNavbar();
 

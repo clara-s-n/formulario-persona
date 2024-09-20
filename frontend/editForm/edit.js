@@ -46,7 +46,7 @@ function displayUserInfo() {
 function handleCancel(e) {
     e.preventDefault();
     if (confirm('Los datos no se han guardado. ¿Está seguro que desea cancelar?')) {
-        window.location.href = '/';
+        window.location.href = '../peopleList/index.html';
     }
 }
 

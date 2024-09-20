@@ -100,22 +100,21 @@ input:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Estilos para el dashboard */
-#personasList {
+.button-container{
+    /* Vemos que el boton de registrar tome mas espacio y sea una grid con los 3 botones */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /*Espacio entre ellos*/
+    gap: 10px;
+    /*Espacio antes de poner los botones*/
     margin-top: 20px;
 }
 
-#personasList p {
-    background-color: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+#register:hover {
+    background-color: #60a366;
 }
 
-@media (max-width: 500px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-    }
+#googleLogin:hover {
+    background-color: #a45004;
 }

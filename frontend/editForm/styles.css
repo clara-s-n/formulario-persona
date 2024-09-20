@@ -8,12 +8,10 @@ html {
 body {
     margin: 0 auto;
     padding: 20px;
+    align-items: center;
     background-image: url(https://i0.wp.com/www.silocreativo.com/wp-content/uploads/2014/11/patrones-texturas-descarga-gratuita.png?fit=666%2C370&quality=100&strip=all&ssl=1);
 }
 
-.formBody {
-    max-width: 600px;
-}
 
 h1 {
     color: #333;
@@ -24,10 +22,12 @@ h1 {
 }
 
 form {
+    max-width: 600px;
     background-color: #FAF2D2;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
 label {
@@ -71,7 +71,7 @@ input.invalid {
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     gap: 10px;
 }
 
