@@ -47,6 +47,7 @@ function updateNavbar() {
         loginItem.style.display = 'none';
         peopleListItem.style.display = 'block';
         logoutItem.style.display = 'block';
+        userInfoElement.style.display = 'block';
         const userInfo = auth.getUser();
         if (userInfo) {
             userInfoElement.textContent = `Usuario: ${userInfo.name} ${userInfo.lastname}`;
@@ -65,7 +66,7 @@ function updateNavbar() {
         loginItem.style.display = 'block';
         peopleListItem.style.display = 'none';
         logoutItem.style.display = 'none';
-        userInfoElement.textContent = 'none';
+        userInfoElement.textContent = '';
     }
 }
 
