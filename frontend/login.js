@@ -11,12 +11,14 @@ initNavbar();
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
-    const googleLoginButton = document.getElementById('googleLoginButton');
+    const googleLoginButton = document.getElementById('googleLogin');
     const registerButton = document.getElementById('register');
 
     loginForm.addEventListener('submit', handleLogin);
     if (googleLoginButton) {
-        googleLoginButton.addEventListener('click', handleGoogleLogin);
+        googleLoginButton.addEventListener('click', () => {
+            window.location.href = 'https://localhost/backend/auth/login/google'
+        });
     }
 
     registerButton.addEventListener('click', () => {
