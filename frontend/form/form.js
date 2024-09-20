@@ -38,7 +38,10 @@ registrarBtn.addEventListener('click', async function (e) {
     if (isValid) {
         // Create a FormData object
         const formData = new FormData(form);
-        console.log({ formData });
+        // Mostramos todas las claves y valores de formData
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
 
         try {
             const response = await fetch(`${API_URL}`, {
@@ -47,11 +50,14 @@ registrarBtn.addEventListener('click', async function (e) {
             });
 
             if (response.ok) {
+                const result = await response.json();
+                console.log('Respuesta del servidor:', result);
                 alert('Registro exitoso');
                 window.location.href = '/';
             } else {
                 const errorData = await response.json();
-                alert(`Error al registrar la persona: ${errorData.error || 'Error desconocido'}`);
+                console.error('Error del servidor:', errorData);
+                alert(`Error al registrar la persona: ${errorData.message || 'Error desconocido'}`);
             }
         } catch (error) {
             console.error('Error al registrar la persona:', error);

@@ -1,9 +1,13 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
+import {nameSchema} from "../tipos/persona.js";
 
 export const validateRut = async (request: FastifyRequest, reply: FastifyReply) => {
-    const { rut } = request.body as { rut: string };
+    /*const { rut } = request.body as { rut: string };*/
+    const data = request.body as { rut: typeof nameSchema};
+    const rut = data.rut.value;
+
     if (!rut || !isValidRut(rut)) {
-        return reply.status(400).send({ message: 'RUT no válido' });
+        return reply.status(400).send({ message: 'RUT no válido', /*data,*/ rut });
     }
 }
 

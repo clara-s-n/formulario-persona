@@ -46,8 +46,11 @@ function renderPersonList(people) {
 function createPersonCard(person) {
     const card = document.createElement('div');
     card.classList.add('card');
+    const imageUrl = person.image_path
+        ? `${API_URL}${person.image_path}` : 'https://www.w3schools.com/howto/img_avatar.png';
+    console.log(imageUrl);
     card.innerHTML = `
-        <img src="https://i.fbcd.co/products/resized/resized-750-500/d4c961732ba6ec52c0bbde63c9cb9e5dd6593826ee788080599f68920224e27d.jpg" class="icon" alt="Avatar" style="width:100%">
+        <img src="imageUrl" class="icon" alt="Avatar" style="width:100%">
         <div class="container">
             <h4>${person.name} ${person.lastname}</h4>
             <p>${person.email}</p>
