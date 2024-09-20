@@ -35,27 +35,54 @@ const validations = {
     rut: (value) => {
         if (!isValidFormat(value)) return 'El formato del RUT no es válido';
         return isValidRut(value) ? '' : 'El RUT no es válido';
+    },
+    foto: (value) => {
+        if (!value) return 'Debe seleccionar una imagen';
+        if (!validImageTypes.includes(value.type)) return 'El tipo de archivo no es una imagen válida';
+        if (value.size > 10 * 1024 * 1024) return 'La imagen no puede pesar más de 10MB';
+        if (value.length > 1) return 'Solo puede subir una imagen';
+        return '';
     }
+
 };
 
 function validateField(field, form) {
     const errorElement = document.getElementById(`${field.id}Error`);
-    let error = validations[field.id](field.value, form.password?.value);
+    let error;
+
+    if (validations[field.id]) {
+        error = validations[field.id](field.value, form.password?.value);
+    } else {
+        // Acá validamos la imagen, porque por alguna razón no se puede hacer con el objeto file
+        error = validations.foto(field.value);
+    }
+
     errorElement.textContent = error;
     field.classList.toggle('valid', !error);
     field.classList.toggle('invalid', !!error);
     return !error;
 }
 
+
 function setupFormValidation(formId) {
     const form = document.getElementById(formId);
     const inputs = form.querySelectorAll('input');
 
     inputs.forEach(input => {
+        if (input.type === 'file') {
+            input.addEventListener('change', function() {
+                console.log('file change');
+                console.log(this.id);
+                validateField(this, form);
+            });
+        }
+
         input.addEventListener('input', function() {
             validateField(this, form);
         });
     });
 }
+
+const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/jpg'];
 
 export { setupFormValidation, validateField };
