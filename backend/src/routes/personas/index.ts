@@ -13,6 +13,7 @@ import { query } from "../../services/database.js";
 import * as path from "path";
 import { pipeline } from 'stream/promises';
 import { createWriteStream } from 'fs';
+import bcrypt from 'bcryptjs';
 
 // Definición del plugin de ruta
 const personaRoute: FastifyPluginAsync = async (
@@ -47,15 +48,14 @@ const personaRoute: FastifyPluginAsync = async (
       const email = personaPost.email.value;
       const countryId = personaPost.countryId.value;
       const rut = personaPost.rut.value;
-      const password = personaPost.password.value;
-
+      const hashedPassword = await bcrypt.hash(personaPost.password.value, 10);
       // Use parameterized query
       const res = await query(
           `INSERT INTO personas
        (name, lastname, email, countryId, rut, password, image_path)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING id;`,
-          [name, lastname, email, countryId, rut, password, imageUrl]
+          [name, lastname, email, countryId, rut, hashedPassword, imageUrl]
       );
 
       if (res.rowCount === 0) {
