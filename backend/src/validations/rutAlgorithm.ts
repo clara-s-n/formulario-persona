@@ -1,9 +1,21 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 export const validateRut = async (request: FastifyRequest, reply: FastifyReply) => {
-    const { rut } = request.body as { rut: string };
+    /*const { rut } = request.body as { rut: string };*/
+
+    // Almacenamos el objeto que se recibe
+    //const rut = request.body.rut.value;
+
+    // Obtenemos el campo rut
+    //const rut = data.rut.value;
+    const body = request.body as { rut?: string };
+    if (typeof body.rut !== 'string') {
+        reply.code(400).send({ error: 'Invalid RUT' });
+        return;
+    }
+    const rut = body.rut;
     if (!rut || !isValidRut(rut)) {
-        return reply.status(400).send({ message: 'RUT no válido' });
+        return reply.status(400).send({ message: 'RUT no válido', /*data,*/ rut });
     }
 }
 
