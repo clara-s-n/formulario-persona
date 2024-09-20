@@ -64,6 +64,30 @@ registrarBtn.addEventListener('click', async function (e) {
     }
 });
 
+function getQueryParams() {
+    const googleParams = new URLSearchParams(window.location.search);
+    return {
+        email: googleParams.get('email'),
+        given_name: googleParams.get('given_name'),
+        family_name: googleParams.get('family_name')
+    };
+}
+// Función para rellenar el formulario con los datos de la URL
+function fillForm() {
+    const { email, given_name, family_name } = getQueryParams();
+    if (email) {
+        document.getElementById('email').value = email;
+    }
+    if (given_name) {
+        document.getElementById('name').value = given_name;
+    }
+    if (family_name) {
+        document.getElementById('lastname').value = family_name;
+    }
+}
+// Llamar a la función fillForm cuando la página se cargue para rellenar los campos
+window.onload = fillForm;
+
 /*
 async function doPost(event) {
     event.preventDefault();
