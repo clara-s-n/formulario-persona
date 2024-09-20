@@ -25,7 +25,6 @@ listadoBtn.addEventListener('click', function (e) {
 // Logic for registering people
 const API_URL = 'https://localhost/backend/personas';
 
-// Modify the registration function to send data to the backend
 registrarBtn.addEventListener('click', async function (e) {
     e.preventDefault();
     let isValid = true;
@@ -37,45 +36,35 @@ registrarBtn.addEventListener('click', async function (e) {
     });
 
     if (isValid) {
-        // Create a person object with form data
-        const persona = new Persona(
-            form.name.value,
-            form.lastname.value,
-            form.email.value,
-            form.countryId.value,
-            form.rut.value,
-            form.password.value,
-            form.repeatPassword.value,
-        );
+        // Create a FormData object
+        const formData = new FormData(form);
+        console.log({ formData });
 
         try {
             const response = await fetch(`${API_URL}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(persona),
+                body: formData, // Send formData directly
             });
 
             if (response.ok) {
                 alert('Registro exitoso');
-                // llamada a doPost
-                await doPost(e);
                 window.location.href = '/';
             } else {
-                alert('Error al registrar la persona');
+                const errorData = await response.json();
+                alert(`Error al registrar la persona: ${errorData.error || 'Error desconocido'}`);
             }
         } catch (error) {
             console.error('Error al registrar la persona:', error);
             alert('Error al registrar la persona');
         }
     } else {
-    const firstInvalidInput = form.querySelector('.invalid');
-    firstInvalidInput?.scrollIntoView({ behavior: 'smooth' });
-    firstInvalidInput?.focus();
+        const firstInvalidInput = form.querySelector('.invalid');
+        firstInvalidInput?.scrollIntoView({ behavior: 'smooth' });
+        firstInvalidInput?.focus();
     }
 });
 
+/*
 async function doPost(event) {
     event.preventDefault();
     console.log("doPost ejecutando");
@@ -101,4 +90,4 @@ async function doPost(event) {
     } catch (error) {
       console.error("Error:", error);
     }
-}
+}*/

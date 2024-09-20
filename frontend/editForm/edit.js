@@ -55,9 +55,8 @@ async function handleConfirm(e) {
     const form = document.getElementById('editForm');
 
     if (validateForm(form)) {
-        const persona = createPersonaFromForm();
-        await updatePersona(persona);
-        await doPost(e);
+        const formData = new FormData(form);
+        await updatePersona(formData);
     }
 }
 
@@ -78,19 +77,8 @@ function validateForm(form) {
     return isValid;
 }
 
-function createPersonaFromForm() {
-    const persona = new Persona(
-        document.getElementById('name').value,
-        document.getElementById('lastname').value,
-        document.getElementById('email').value,
-        document.getElementById('countryId').value,
-        document.getElementById('rut').value
-    );
-    return persona;
-}
 
-async function updatePersona(persona) {
-    const personId=String(auth.getId());
+async function updatePersona(formData) {
     try {
         const response = await fetch(`${API_URL}/personas/${personId}`, {
             method: 'PUT',
@@ -98,7 +86,7 @@ async function updatePersona(persona) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${auth.token}`,
             },
-            body: JSON.stringify(persona)
+            body: formData,
         });
 
         if (response.ok) {
@@ -119,13 +107,13 @@ async function obtenerDatosPersona() {
         const response = await fetch(`${API_URL}/personas/${personId}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${auth.token}`
             }
         });
 
         if (response.ok) {
             const persona = await response.json();
+            console.log('Obteniendo datos de la persona:', persona);
             populateForm(persona);
         } else {
             handleFetchError(response);
@@ -136,7 +124,7 @@ async function obtenerDatosPersona() {
     }
 }
 
-async function doPost(event) {
+/*sync function doPost(event) {
     event.preventDefault();
     console.log("doPost ejecutado");
     const form = document.getElementById("editForm");
@@ -161,7 +149,7 @@ async function doPost(event) {
     } catch (error) {
       console.error("Error:", error);
     }
-}
+}*/
 
 function populateForm(persona) {
     document.getElementById('name').value = persona.name;
@@ -169,6 +157,7 @@ function populateForm(persona) {
     document.getElementById('email').value = persona.email;
     document.getElementById('countryId').value = persona.countryid;
     document.getElementById('rut').value = persona.rut;
+    //document.getElementById('foto').value = persona.foto;
 }
 
 function handleFetchError(response) {
