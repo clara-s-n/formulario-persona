@@ -22,7 +22,7 @@ const FileSchema = Type.Object(
     { additionalProperties: false }
 );
 
-const nameSchema = Type.Object(
+export const nameSchema = Type.Object(
     {
         type: Type.Literal("field"),
         fieldname: Type.String(),
@@ -109,3 +109,4 @@ export type PersonaIdType = Static<typeof PersonaIdSchema>;
 export type PersonaType = Static<typeof PersonaSchema>;
 export type PersonaPostType = Static<typeof PersonaPostSchema>;
 export type PersonaPutType = Static<typeof PersonaPutSchema>;
+export type NameSchemaType = Static<typeof nameSchema>;

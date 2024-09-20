@@ -1,20 +1,14 @@
 import { FastifyReply, FastifyRequest } from "fastify";
+import { nameSchema } from "../tipos/persona.js";
 
 export const validateCedula = async (request: FastifyRequest, reply: FastifyReply) => {
     /*const { countryId } = request.body as { countryId: string };*/
-/*
-    // Almacenamos el objeto que se recibe
-    const data = request.body;
 
-    // Obtenemos el campo countryId
+    // Almacenamos el objeto que se recibe
+    const data = request.body as { countryId: typeof nameSchema};
+
+    // Almacenamos el campo countryId del objeto
     const countryId = data.countryId.value;
-*/
-    const data = request.body as { countryId?: string };
-    if (typeof data.countryId !== 'string') {
-        reply.code(400).send({ error: 'Invalid countryId' });
-        return;
-    }
-    const countryId = data.countryId;
 
     // Verificamos si el campo countryId no está vacío
     if (!countryId || !isValidId(countryId)) {

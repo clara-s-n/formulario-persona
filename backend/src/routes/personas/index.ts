@@ -10,8 +10,9 @@ import {
 import { validateCedula } from "../../validations/idAlgorithm.js";
 import { validateRut } from "../../validations/rutAlgorithm.js";
 import { query } from "../../services/database.js";
-import * as fs from "fs";
 import * as path from "path";
+import { pipeline } from 'stream/promises';
+import { createWriteStream } from 'fs';
 
 // Definición del plugin de ruta
 const personaRoute: FastifyPluginAsync = async (
@@ -30,11 +31,14 @@ const personaRoute: FastifyPluginAsync = async (
       const personaPost = request.body as PersonaPostType;
       const imageFile = await request.file();
 
-      let imageUrl = null;
+      let imageUrl = '';
       if (imageFile) {
         const uploadPath = path.join(process.cwd(), "public", imageFile.filename);
-        await fs.promises.pipeline(imageFile.file, fs.createWriteStream(uploadPath));
-        imageUrl = `${request.protocol}://${request.hostname}/public/${imageFile.filename}`;
+        await pipeline(
+            imageFile.file,
+            createWriteStream(uploadPath)
+        );
+        imageUrl = `/public/${imageFile.filename}`;
       }
 
       // Extract actual values from form fields
@@ -132,8 +136,11 @@ const personaRoute: FastifyPluginAsync = async (
       let imageUrl = null;
       if (imageFile) {
         const uploadPath = path.join(process.cwd(), "public", imageFile.filename);
-        await fs.promises.pipeline(imageFile.file, fs.createWriteStream(uploadPath));
-        imageUrl = `${request.protocol}://${request.hostname}/public/${imageFile.filename}`;
+        await pipeline(
+            imageFile.file,
+            createWriteStream(uploadPath)
+        );
+        imageUrl = `/public/${imageFile.filename}`;
       }
 
       // Construir objeto de actualización y lista de parámetros
@@ -141,8 +148,9 @@ const personaRoute: FastifyPluginAsync = async (
       const params = [];
       let paramIndex = 1;
 
-      // Función auxiliar para extraer el valor del campo
-      const getFieldValue = (field) => field && field.value ? field.value : field;
+      const getFieldValue = (field: { value?: string } | string): string => {
+        return typeof field === 'object' && field.value ? field.value : field as string;
+      };
 
       if (personaPut.name) {
         updates.push(`name = $${paramIndex}`);
