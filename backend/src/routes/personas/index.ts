@@ -48,8 +48,6 @@ const personaRoute: FastifyPluginAsync = async (
       const email = personaPost.email.value;
       const countryId = personaPost.countryId.value;
       const rut = personaPost.rut.value;
-      const password = personaPost.password.value;
-
       const hashedPassword = await bcrypt.hash(personaPost.password.value, 10);
       // Use parameterized query
       const res = await query(
