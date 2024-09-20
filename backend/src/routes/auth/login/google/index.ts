@@ -3,6 +3,9 @@ import { query } from '../../../../services/database.js'
 const googleAuth: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     // Endpoint de callback después del login exitoso
     fastify.get('/callback', {
+        schema: {
+            tags: ['google'],
+        },
         handler: async function (request, reply) {
             try {
 

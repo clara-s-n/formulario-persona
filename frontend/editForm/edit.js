@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setupFormValidation('editForm');
-    displayUserInfo();
+    //displayUserInfo();
 
     cancelarBtn.addEventListener('click', handleCancel);
     confirmarBtn.addEventListener('click', handleConfirm);

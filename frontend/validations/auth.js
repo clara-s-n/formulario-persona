@@ -23,6 +23,7 @@ export const auth = {
             });
 
             if (!response.ok) {
+                console.log('Contraseña recibida:', password, 'Contraseña esperada', );
                 throw new Error('Login failed');
             }
 
