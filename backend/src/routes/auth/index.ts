@@ -30,7 +30,8 @@ const authRoute: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
       const token = fastify.jwt.sign({ id: user.id }, { expiresIn: '1h' });
 
-      reply.send({ success: true, token, id: user.id, user: `${user.name} ${user.lastname}` });
+      reply.send({ success: true, token, id: user.id, user: { name: user.name, lastname: user.lastname } });
+
     }
   });
 };

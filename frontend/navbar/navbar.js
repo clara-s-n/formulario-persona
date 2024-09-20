@@ -65,7 +65,7 @@ function updateNavbar() {
         loginItem.style.display = 'block';
         peopleListItem.style.display = 'none';
         logoutItem.style.display = 'none';
-        userInfoElement.textContent = '';
+        userInfoElement.textContent = 'none';
     }
 }
 
