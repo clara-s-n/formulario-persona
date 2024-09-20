@@ -13,7 +13,7 @@
     <header id="header"></header>
     <div class="fromBody">
         <h1>Editar datos</h1>
-        <form id="editForm">
+        <form id="editForm" enctype="multipart/form-data">
             <label for="nombre">Nombre:</label>
             <input type="text" id="name" name="nombre" required placeholder="Jane">
             <div id="nameError" class="error"></div>
@@ -42,14 +42,15 @@
             <input type="text" id="rut" name="rut" required placeholder="XXXXXXXXXXXX">
             <div id="rutError" class="error"></div>
 
+            <label for="foto">Imagen:</label>
+            <input type="file" id="foto" name="foto" required accept="image/*"/>
+            <div id="fotoError" class="error"></div>
+
             <div class="button-container">
                 <button type="button" id="confirmarBtn">Confirmar</button>
                 <button type="button" id="cancelarBtn">Cancelar</button>
             </div>
 
-            <label for="foto">Imagen:</label>
-            <input type="file" id="foto" name="foto" required />
-            <div id="fotoError" class="error"></div>
         </form>
 
     </div>
