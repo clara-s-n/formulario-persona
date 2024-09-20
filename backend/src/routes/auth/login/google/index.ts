@@ -22,7 +22,7 @@ const googleAuth: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
                 const family_name = parsedUserinfo.family_name
 
                 // Consulta a la base de datos
-                const res = await query(`select id from personas where email = '${email}'`);
+                const res = await query(`select id, name, lastname from personas where email  = '${email}'`);
 
                 if (res.rows.length === 0) {
                     reply.redirect(`https://localhost/form/index.html?email=${email}&given_name=${given_name}&family_name=${family_name}`);
@@ -30,7 +30,7 @@ const googleAuth: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
                   }
                 const user = res.rows[0];
                 const token = fastify.jwt.sign({ id: user.id });
-                reply.redirect(`https://localhost/login?token=${token}&user=${user}`)
+                reply.redirect(`https://localhost/?token=${token}&username=${user.name}&userlastname=${user.lastname}`)
 
 
             } catch (error) {

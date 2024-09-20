@@ -51,9 +51,9 @@ export const auth = {
                 // Almacenar el token en localStorage
                 localStorage.setItem('token', googleToken);
                 // Extraer el usuario del parametro 'user'
-                const googleUser = googleInfo.get('user');
+                const googleUser = {name: googleInfo.get('username'), lastname: googleInfo.get('userlastname')};
                 // Almacenar el usuario en localStorage
-                localStorage.setItem('user', googleUser);
+                localStorage.setItem('user', JSON.stringify(googleUser));
             } else {
                 // Manejar el caso en que no haya token en la URL
                 console.error('Login con google no disponible');
