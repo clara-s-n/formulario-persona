@@ -59,6 +59,8 @@ registrarBtn.addEventListener('click', async function (e) {
 
             if (response.ok) {
                 alert('Registro exitoso');
+                // llamada a doPost
+                await doPost(e);
                 window.location.href = '/';
             } else {
                 alert('Error al registrar la persona');
@@ -73,3 +75,30 @@ registrarBtn.addEventListener('click', async function (e) {
     firstInvalidInput?.focus();
     }
 });
+
+async function doPost(event) {
+    event.preventDefault();
+    console.log("doPost ejecutando");
+    const form = document.getElementById("registroForm");
+    const formData = new FormData(form);
+    console.log({ formData });
+
+    try {
+      const response = await fetch("backend/post/multipart", {
+        // headers: {
+        //   ContentType: "multipart/form-data",
+        // },
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        console.info(result);
+      } else {
+        console.error(result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+}

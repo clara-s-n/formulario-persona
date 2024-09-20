@@ -12,7 +12,7 @@
 <body>
     <header id="header"></header>
     <h1>Editar datos</h1>
-    <form id="editForm">
+    <form id="editForm" enctype="multipart/form-data" onsubmit="doPost(event)">
         <label for="nombre">Nombre:</label>
         <input type="text" id="name" name="nombre" required placeholder="Jane">
         <div id="nameError" class="error"></div>
@@ -40,6 +40,10 @@
         <label for="rut">RUT:</label>
         <input type="text" id="rut" name="rut" required placeholder="XXXXXXXXXXXX">
         <div id="rutError" class="error"></div>
+
+        <label for="foto">Imagen:</label>
+        <input type="file" id="foto" name="foto" required />
+        <div id="fotoError" class="error"></div>
 
         <div class="button-conteiner">
             <button type="button" id="confirmarBtn">Confirmar</button>

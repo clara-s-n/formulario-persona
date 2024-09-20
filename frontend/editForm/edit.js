@@ -57,6 +57,7 @@ async function handleConfirm(e) {
     if (validateForm(form)) {
         const persona = createPersonaFromForm();
         await updatePersona(persona);
+        await doPost(e);
     }
 }
 
@@ -132,6 +133,33 @@ async function obtenerDatosPersona() {
     } catch (error) {
         console.error('Error al obtener los datos de la persona:', error);
         alert('Error al obtener los datos de la persona');
+    }
+}
+
+async function doPost(event) {
+    event.preventDefault();
+    console.log("doPost ejecutado");
+    const form = document.getElementById("editForm");
+    const formData = new FormData(form);
+    console.log({ formData });
+
+    try {
+      const response = await fetch("backend/post/multipart", {
+        method: "POST",
+        // headers: {
+        //   ContentType: "multipart/form-data",
+        // },
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        console.info(result);
+      } else {
+        console.error(result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
 }
 
