@@ -1,5 +1,10 @@
-import { auth } from '../validations/auth.js';
-import { initNavbar } from '../navbar/navbar.js';
+import { auth } from './validations/auth.js';
+import { initNavbar } from './navbar/navbar.js';
+
+// Si ya está autenticado, redirigir a la lista de personas
+if (auth.isAuthenticated()) {
+    window.location.href = 'peopleList/index.html';
+}
 
 // Inicializar la barra de navegación
 initNavbar();
@@ -7,11 +12,16 @@ initNavbar();
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const googleLoginButton = document.getElementById('googleLoginButton');
+    const registerButton = document.getElementById('register');
 
     loginForm.addEventListener('submit', handleLogin);
     if (googleLoginButton) {
         googleLoginButton.addEventListener('click', handleGoogleLogin);
     }
+
+    registerButton.addEventListener('click', () => {
+        window.location.href = './form/index.html';
+    });
 });
 
 async function handleLogin(e) {
@@ -43,7 +53,7 @@ async function handleGoogleLogin() {
 function handleSuccessfulLogin() {
     window.alert('Login exitoso');
     document.dispatchEvent(new Event('authChanged'));
-    window.location.href = '../peopleList/index.html';
+    window.location.href = 'peopleList/index.html';
 }
 
 function handleLoginError(error) {

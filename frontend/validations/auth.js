@@ -10,7 +10,7 @@ export const auth = {
             return storedUser ? JSON.parse(storedUser) : null; // Retorna null si no hay datos
         } catch {
             console.error("Error parsing user from localStorage");
-            return null; // Retorna null si JSON.parse falla
+            return null;
         }
     })(),
 
@@ -72,7 +72,15 @@ export const auth = {
     },
 
     isAuthenticated() {
-        return !!this.token;
+        // Comparamos la fecha de expiración del token con la fecha actual
+        const payload = this.getPayload();
+        if (!payload) return false;
+        const expirationTime = payload.exp * 1000;
+        const isExpired = Date.now() >= expirationTime;
+        if (!!this.token && !isExpired) {
+            return true;
+        }
+        this.logout();
     },
 
     getUser() {

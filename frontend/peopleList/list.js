@@ -6,7 +6,7 @@ const personList = document.getElementById('personList');
 
 document.addEventListener('DOMContentLoaded', () => {
     if (!auth.isAuthenticated()) {
-        window.location.href = '../login/index.html';
+        window.location.href = '../index.html';
     } else {
         initializePage();
     }

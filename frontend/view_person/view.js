@@ -12,7 +12,7 @@ const personId = getQueryParam('id');
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!auth.isAuthenticated()) {
-    window.location.href = '../login/index.html';
+    window.location.href = '../index.html';
   } else {
     
     if (personId) {
@@ -114,7 +114,7 @@ function handleFetchError(response) {
   if (response.status === 401) {
     alert('Sesión expirada. Por favor, vuelva a iniciar sesión.');
     auth.logout();
-    window.location.href = '../login/index.html';
+    window.location.href = '../index.html';
   } else if (response.status === 403) {
     alert('No tiene permiso para realizar esta acción.');
   } else {

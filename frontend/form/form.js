@@ -14,12 +14,12 @@ setupFormValidation('registroForm');
 // Function to use the cancel and list buttons
 cancelarBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    window.location.reload();
+    window.location.href = '/';
 });
 
 listadoBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    window.location.href = '/';
+    window.location.href = './peopleList/index.html';
 });
 
 // Logic for registering people
