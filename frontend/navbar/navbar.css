@@ -84,7 +84,6 @@ header {
     padding: 20px;
 }
 
-.navbar .user-info {
-    margin-left: auto;
-    
+#user-info {
+    margin-right: 20px; 
 }
