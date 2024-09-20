@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "e65d7769-c391-4f75-8328-60d473388cbe",
+		"name": "Formulario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31646706"
+	},
+	"item": [
+		{
+			"name": "Find all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI2ODU1ODc4LCJleHAiOjE3MjY4NTk0Nzh9.NVqIWEKM6gKEE4OawT5Np76KrzzTe7Ioq4lCKeH_WDg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost/backend/personas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI2ODU1ODc4LCJleHAiOjE3MjY4NTk0Nzh9.NVqIWEKM6gKEE4OawT5Np76KrzzTe7Ioq4lCKeH_WDg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost/backend/personas/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"personas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create person",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Ana",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Sena",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ana.sena@example.com",
+							"type": "text"
+						},
+						{
+							"key": "countryId",
+							"value": "5.483.596-8",
+							"type": "text"
+						},
+						{
+							"key": "rut",
+							"value": "020354560012",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/Soporte/Downloads/Diagrama físico.jpg"
+						},
+						{
+							"key": "password",
+							"value": "1234-Asd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost/backend/personas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit person",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI2ODU1ODc4LCJleHAiOjE3MjY4NTk0Nzh9.NVqIWEKM6gKEE4OawT5Np76KrzzTe7Ioq4lCKeH_WDg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Ana",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Sena",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ana@example.com",
+							"type": "text"
+						},
+						{
+							"key": "countryId",
+							"value": "3.312.475-0",
+							"type": "text"
+						},
+						{
+							"key": "rut",
+							"value": "150046270011",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Asd-1234",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/Soporte/Downloads/Diagrama físico.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost/backend/personas/3?name=Ana&lastname=Sena&email=ana.sena@example.com&countryId=5.483.596-8&rut=020354560012&password=1234-Asd",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"personas",
+						"3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ana"
+						},
+						{
+							"key": "lastname",
+							"value": "Sena"
+						},
+						{
+							"key": "email",
+							"value": "ana.sena@example.com"
+						},
+						{
+							"key": "countryId",
+							"value": "5.483.596-8"
+						},
+						{
+							"key": "rut",
+							"value": "020354560012"
+						},
+						{
+							"key": "password",
+							"value": "1234-Asd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI2ODUwMjU2LCJleHAiOjE3MjY4NTM4NTZ9.btetrq9aDiied73rUCq7iRfywcMAu4l4ayzn3-XIoI0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost/backend/personas/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"personas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"celeste@correo.com\",\r\n    \"password\": \"29DEenero2003_\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost/backend/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"backend",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

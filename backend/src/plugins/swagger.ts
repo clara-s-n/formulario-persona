@@ -17,7 +17,9 @@ const options : SwaggerOptions = {
             }
         ],
         tags: [
-            {name: 'persona', description: 'Persona description'}
+            {name: 'persona', description: 'Persona description'},
+            {name: 'auth', description: 'Auth description'},
+            {name: 'google', description: 'Google description'}
         ],
         components: {
             securitySchemes: {
