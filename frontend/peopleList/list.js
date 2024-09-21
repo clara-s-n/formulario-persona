@@ -50,7 +50,7 @@ function createPersonCard(person) {
         ? `${API_URL}${person.image_path}` : 'https://www.w3schools.com/howto/img_avatar.png';
     console.log(imageUrl);
     card.innerHTML = `
-        <img src="imageUrl" class="icon" alt="Avatar" style="width:100%">
+        <img src="${imageUrl}" class="icon" alt="Avatar" style="width:100%">
         <div class="container">
             <h4>${person.name} ${person.lastname}</h4>
             <p>${person.email}</p>
